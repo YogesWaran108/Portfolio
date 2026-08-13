@@ -9,6 +9,7 @@ import { SideLabels } from './components/layout/SideLabels';
 import { CustomCursor } from './components/ui/CustomCursor';
 import { ThemeMode } from './components/ui/ThemeSwitcher';
 import { DeviceMode } from './components/ui/DeviceFrameSwitcher';
+import { Preloader } from './components/ui/Preloader';
 
 // Import modular Page Views from src/pages
 import { HomePage } from './pages/HomePage';
@@ -20,6 +21,7 @@ import { AdminDashboard } from './components/admin/AdminDashboard';
 gsap.registerPlugin(ScrollTrigger, Flip);
 
 export function App() {
+  const [loadingComplete, setLoadingComplete] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [customCursor, setCustomCursor] = useState(true);
@@ -322,6 +324,9 @@ export function App() {
 
   return (
     <div className="relative min-h-screen bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-white transition-colors duration-300 selection:bg-blue-600 selection:text-white font-sans">
+      {/* Ashley / Miller Style Award-Winning GSAP Preloader */}
+      {!loadingComplete && <Preloader onComplete={() => setLoadingComplete(true)} />}
+
       {/* Custom Physics Follower Cursor */}
       <CustomCursor enabled={customCursor} />
 
