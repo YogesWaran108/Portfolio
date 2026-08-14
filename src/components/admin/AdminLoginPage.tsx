@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lock, ShieldAlert, KeyRound, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Lock, User, ShieldAlert, KeyRound, ArrowRight } from 'lucide-react';
 
 interface AdminLoginPageProps {
   onLoginSuccess: () => void;
@@ -7,7 +7,8 @@ interface AdminLoginPageProps {
 }
 
 export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, onBackToHome }) => {
-  const [passkey, setPasskey] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isVerifying, setIsVerifying] = useState(false);
 
@@ -17,20 +18,25 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
     setErrorMsg(null);
 
     setTimeout(() => {
-      // Default passkey for Admin Access (or customizable via env)
-      const validPasskeys = ['admin123', 'yogesh2026', 'admin', 'passkey'];
-      if (validPasskeys.includes(passkey.trim().toLowerCase())) {
+      const validUsernames = ['admin', 'yogesh', 'yogeshwaran'];
+      const validPasswords = ['admin123', 'yogesh2026', 'admin', 'password123'];
+
+      const userMatch = validUsernames.includes(username.trim().toLowerCase());
+      const passMatch = validPasswords.includes(password.trim().toLowerCase());
+
+      if (userMatch && passMatch) {
         sessionStorage.setItem('isAdminAuth', 'true');
+        sessionStorage.setItem('adminUser', username.trim());
         onLoginSuccess();
       } else {
-        setErrorMsg('Invalid Security Passkey. Access Denied.');
+        setErrorMsg('Invalid Username or Password. Access Denied.');
       }
       setIsVerifying(false);
     }, 600);
   };
 
   return (
-    <div className="min-h-screen bg-[#060a14] text-white flex items-center justify-center p-4 sm:p-6 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#060a14] text-white flex items-center justify-center p-4 sm:p-6 relative overflow-hidden font-sans select-none">
       {/* Background Neon Grid Accents */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(2,132,199,0.15),transparent_70%)] pointer-events-none" />
       
@@ -44,28 +50,45 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
             // RESTRICTED ACCESS GATE
           </span>
           <h2 className="font-display text-3xl font-extrabold text-white tracking-tight">
-            Admin Authentication
+            Admin Portal Login
           </h2>
           <p className="text-xs text-slate-400 font-light">
-            Enter authorized security passkey to access client response HUD.
+            Authenticate with your admin username and password to access the HUD.
           </p>
         </div>
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Username Input Field */}
+          <div>
+            <label className="block text-[11px] font-mono-code uppercase text-slate-300 mb-2 font-semibold flex items-center gap-1.5">
+              <User className="w-3.5 h-3.5 text-cyan-400" />
+              <span>USERNAME</span>
+            </label>
+            <input
+              type="text"
+              required
+              autoFocus
+              placeholder="e.g. admin or yogesh"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full bg-slate-950/80 border border-white/15 focus:border-cyan-400 px-4 py-3 text-white placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl font-mono-code"
+            />
+          </div>
+
+          {/* Password Input Field */}
           <div>
             <label className="block text-[11px] font-mono-code uppercase text-slate-300 mb-2 font-semibold flex items-center gap-1.5">
               <KeyRound className="w-3.5 h-3.5 text-cyan-400" />
-              <span>SECURITY PASSKEY</span>
+              <span>PASSWORD</span>
             </label>
             <input
               type="password"
               required
-              autoFocus
-              placeholder="Enter admin passkey..."
-              value={passkey}
-              onChange={(e) => setPasskey(e.target.value)}
-              className="w-full bg-slate-950/80 border border-white/15 focus:border-cyan-400 px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl font-mono-code"
+              placeholder="Enter admin password..."
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full bg-slate-950/80 border border-white/15 focus:border-cyan-400 px-4 py-3 text-white placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl font-mono-code"
             />
           </div>
 
@@ -79,13 +102,13 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
           <button
             type="submit"
             disabled={isVerifying}
-            className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 text-white font-display font-extrabold text-xs uppercase tracking-widest hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group shadow-lg"
+            className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 text-white font-display font-extrabold text-xs uppercase tracking-widest hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group shadow-lg mt-2"
           >
             {isVerifying ? (
               <span>VERIFYING CREDENTIALS...</span>
             ) : (
               <>
-                <span>AUTHENTICATE ACCESS</span>
+                <span>SIGN IN TO DASHBOARD</span>
                 <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
               </>
             )}
@@ -95,12 +118,12 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
         {/* Quick Hint & Return Link */}
         <div className="pt-2 text-center space-y-3 border-t border-white/10">
           <p className="text-[11px] font-mono-code text-slate-500">
-            Passkey hint: <span className="text-cyan-400 font-bold">admin123</span> or <span className="text-cyan-400 font-bold">yogesh2026</span>
+            Username: <span className="text-cyan-400 font-bold">admin</span> / Password: <span className="text-cyan-400 font-bold">admin123</span>
           </p>
           <button
             type="button"
             onClick={onBackToHome}
-            className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer font-mono-code underline underline-offset-4"
+            className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer font-mono-code underline underline-offset-4 block mx-auto"
           >
             ← Return to Public Portfolio
           </button>
