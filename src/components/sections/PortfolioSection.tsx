@@ -98,11 +98,13 @@ export const PortfolioSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-8">
               <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.08]">
-                Designing a{' '}
-                <span className="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400 block sm:inline">
-                  Better World
-                </span>{' '}
-                Today.
+                <span className="block sm:inline">Designing a</span>{' '}
+                <span className="block sm:inline">
+                  <span className="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400">
+                    Better World
+                  </span>{' '}
+                  Today.
+                </span>
               </h2>
             </div>
 
