@@ -357,13 +357,17 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
           {/* Left Column: Approach Heading & CTA */}
           <div className="lg:col-span-5 space-y-6">
             <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              Your{' '}
-              <span className="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400 block sm:inline">
-                Approach
+              <span className="block sm:inline">
+                Your{' '}
+                <span className="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400">
+                  Approach
+                </span>
               </span>{' '}
-              and{' '}
-              <span className="font-light text-slate-600 dark:text-slate-300 block sm:inline">
-                Work Specifics
+              <span className="block sm:inline font-light">
+                and{' '}
+                <span className="text-slate-600 dark:text-slate-300 font-normal">
+                  Work Specifics
+                </span>
               </span>
             </h2>
 
