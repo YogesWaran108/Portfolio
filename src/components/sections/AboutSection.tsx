@@ -168,9 +168,6 @@ export const AboutSection: React.FC = () => {
                         <span className="text-xs font-mono-code text-[#0284c7] dark:text-cyan-400 border border-cyan-300 dark:border-cyan-500/30 px-3 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/50 font-bold uppercase tracking-wider">
                           {exp.period}
                         </span>
-                        <span className="text-xs font-mono-code text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5">
-                          {exp.location}
-                        </span>
                       </div>
                       <h4 className="font-display text-xl sm:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-[#0284c7] dark:group-hover:text-cyan-300 transition-colors">
                         {exp.role} <span className="text-[#0284c7] dark:text-cyan-400 font-extrabold">@ {exp.company}</span>

@@ -257,16 +257,46 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
         </div>
 
         {/* Hero Grid with Title and 3D Floating Polyhedron Wireframe */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          <div className="lg:col-span-8 space-y-6 sm:space-y-8">
-            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.05]">
-              Website{' '}
-              <span className="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400 block sm:inline">
-                Design
+        {/* Hero Grid with Title and 3D Floating Polyhedron Wireframe */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative">
+          
+          {/* Mobile-Only Background 3D Polyhedron Wireframe (Positioned behind heading on mobile screens) */}
+          <div className="lg:hidden absolute -top-8 left-1/2 -translate-x-1/2 w-64 h-64 sm:w-80 sm:h-80 opacity-25 dark:opacity-35 pointer-events-none z-0 flex items-center justify-center">
+            <svg
+              viewBox="0 0 200 200"
+              className="w-full h-full text-[#0284c7] dark:text-cyan-400/80 drop-shadow-[0_0_25px_rgba(2,132,199,0.3)] dark:drop-shadow-[0_0_25px_rgba(34,211,238,0.4)]"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              <polygon points="100,10 170,50 170,130 100,170 30,130 30,50" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.8" />
+              <polygon points="100,30 150,60 150,120 100,150 50,120 50,60" fill="none" stroke="#06b6d4" strokeWidth="1" opacity="0.6" />
+              <line x1="100" y1="10" x2="100" y2="170" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" opacity="0.5" />
+              <line x1="30" y1="50" x2="170" y2="130" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" opacity="0.5" />
+              <line x1="30" y1="130" x2="170" y2="50" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" opacity="0.5" />
+              <line x1="100" y1="10" x2="150" y2="60" stroke="#38bdf8" strokeWidth="1.2" />
+              <line x1="100" y1="170" x2="50" y2="120" stroke="#38bdf8" strokeWidth="1.2" />
+              <circle cx="100" cy="10" r="3" fill="#38bdf8" />
+              <circle cx="170" cy="50" r="3" fill="#06b6d4" />
+              <circle cx="170" cy="130" r="3" fill="#06b6d4" />
+              <circle cx="100" cy="170" r="3" fill="#38bdf8" />
+              <circle cx="30" cy="130" r="3" fill="#06b6d4" />
+              <circle cx="30" cy="50" r="3" fill="#06b6d4" />
+            </svg>
+          </div>
+
+          <div className="lg:col-span-8 space-y-6 sm:space-y-8 relative z-10">
+            {/* Heading formatted into 2 clean rows on mobile screens */}
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+              <span className="block sm:inline">
+                Website{' '}
+                <span className="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400">
+                  Design
+                </span>
               </span>{' '}
-              and{' '}
-              <span className="font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-sky-500 to-blue-600 dark:from-sky-300 dark:to-cyan-300 block sm:inline">
-                Development
+              <span className="block sm:inline font-light">
+                and{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-sky-500 to-blue-600 dark:from-sky-300 dark:to-cyan-300">
+                  Development
+                </span>
               </span>
             </h1>
 
@@ -285,8 +315,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
             </div>
           </div>
 
-          {/* 3D Geometric Polyhedron Wireframe (Image 3 Right Component) */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-end relative py-4 sm:py-0">
+          {/* Desktop-Only 3D Geometric Polyhedron Wireframe (Visible on lg+ screens) */}
+          <div className="hidden lg:flex lg:col-span-4 justify-end relative py-4 sm:py-0">
             <div className="w-48 h-48 sm:w-80 sm:h-80 relative flex items-center justify-center">
               <svg
                 ref={polyRef}
