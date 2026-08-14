@@ -22,7 +22,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
   useGSAP(
     () => {
-      // Lock scrolling while preloader sequence is active
+      // Prevent scrolling while preloader sequence is active
       document.body.style.overflow = 'hidden';
 
       const tl = gsap.timeline({
@@ -66,7 +66,6 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
       // -------------------------------------------------------------
       // GSAP TIMELINE SEQUENCE (~4.2 SECONDS TOTAL)
-      // OVERLAP: UNMASKING STARTS WHILE BAR MOVES BACK FROM RIGHT TO CENTER
       // -------------------------------------------------------------
 
       // 1. Initial Reveal (FASTER): Fade in 'Pioneering' (font-weight: 100)
@@ -105,7 +104,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       // 4. Bar Creation: Animate scaleX from 0 to 1 with transformOrigin: "left center"
       .to(rectRef.current, {
         scaleX: 1,
-        duration: 0.65,
+        duration: 0.6,
         ease: 'expo.inOut'
       })
 
@@ -116,15 +115,13 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
         ease: 'sine.inOut'
       })
 
-      // 6. Return from Right to Center (x: 0)
+      // 6. As bar moves from right back toward center (x: 0), overlap the right-to-left unrevealing wipe!
       .to(rectRef.current, {
         x: 0,
-        duration: 0.42,
+        duration: 0.38,
         ease: 'sine.inOut'
       })
-
-      // 7. OVERLAP: Right as the bar moves back from right to center, start unmasking (scaleX 1 -> 0 & text opacity 0 -> 1)
-      .set(rectRef.current, { transformOrigin: 'right center' }, '-=0.28')
+      .set(rectRef.current, { transformOrigin: 'right center' }, '-=0.25')
       .to(rectRef.current, {
         scaleX: 0,
         duration: 0.65,
@@ -138,7 +135,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
       .to({}, { duration: 0.6 })
 
-      // 8. Smooth curtain slide reveal to main portfolio
+      // 7. Smooth curtain slide reveal to main portfolio
       .to(containerRef.current, {
         yPercent: -100,
         duration: 0.85,
