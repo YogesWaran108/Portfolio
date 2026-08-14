@@ -241,14 +241,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
     <section
       id="services"
       ref={sectionRef}
-      className="relative bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-white py-20 sm:py-28 px-8 sm:px-16 md:px-20 lg:px-28 xl:px-36 border-b border-slate-200 dark:border-white/10 overflow-hidden"
+      className="relative bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-white py-12 sm:py-28 px-4 sm:px-16 md:px-20 lg:px-28 xl:px-36 border-b border-slate-200 dark:border-white/10 overflow-hidden"
     >
       {/* ------------------------------------------------------------- */}
       {/* SECTION 1: HERO HEADER WITH 3D POLYHEDRON (IMAGE 3 DESIGN)   */}
       {/* ------------------------------------------------------------- */}
-      <div className="max-w-7xl mx-auto mb-28">
+      <div className="max-w-7xl mx-auto mb-12 sm:mb-28">
         {/* Breadcrumb Header */}
-        <div className="flex items-center gap-2 mb-8 text-xs font-mono-code uppercase tracking-widest text-slate-500 dark:text-slate-400 font-semibold">
+        <div className="flex flex-wrap items-center gap-2 mb-6 sm:mb-8 text-[10px] sm:text-xs font-mono-code uppercase tracking-widest text-slate-500 dark:text-slate-400 font-semibold">
           <span>HOMEPAGE</span>
           <span>/</span>
           <span>SERVICES</span>
@@ -257,8 +257,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
         </div>
 
         {/* Hero Grid with Title and 3D Floating Polyhedron Wireframe */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-8 space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-8 space-y-6 sm:space-y-8">
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.05]">
               Website{' '}
               <span className="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400 block sm:inline">
@@ -271,14 +271,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
             </h1>
 
             {/* Scroll Indicator Button matching Image 3 */}
-            <div className="pt-4 flex items-center gap-4">
+            <div className="pt-2 sm:pt-4 flex items-center gap-4">
               <button
                 type="button"
                 onClick={handleScrollToSpecifics}
                 className="group flex items-center gap-3 text-xs font-mono-code uppercase tracking-widest text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
               >
                 <span className="font-bold">ABOUT SERVICE</span>
-                <div className="w-10 h-10 rounded-full bg-cyan-50 dark:bg-white/10 group-hover:bg-gradient-to-r group-hover:from-cyan-500 group-hover:to-blue-600 flex items-center justify-center text-[#0284c7] dark:text-cyan-400 group-hover:text-white transition-all shadow-md border border-cyan-200 dark:border-white/15">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-cyan-50 dark:bg-white/10 group-hover:bg-gradient-to-r group-hover:from-cyan-500 group-hover:to-blue-600 flex items-center justify-center text-[#0284c7] dark:text-cyan-400 group-hover:text-white transition-all shadow-md border border-cyan-200 dark:border-white/15">
                   <ArrowDown className="w-4 h-4 animate-bounce" />
                 </div>
               </button>
@@ -286,8 +286,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
           </div>
 
           {/* 3D Geometric Polyhedron Wireframe (Image 3 Right Component) */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-end relative">
-            <div className="w-64 h-64 sm:w-80 sm:h-80 relative flex items-center justify-center">
+          <div className="lg:col-span-4 flex justify-center lg:justify-end relative py-4 sm:py-0">
+            <div className="w-48 h-48 sm:w-80 sm:h-80 relative flex items-center justify-center">
               <svg
                 ref={polyRef}
                 viewBox="0 0 200 200"

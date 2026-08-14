@@ -358,18 +358,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService }
         {/* Interactive Google Map with High-Tech Frame & Header Toolbar */}
         <div className="bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-cyan-500/30 rounded-2xl p-3 sm:p-4 shadow-2xl space-y-3">
           {/* Map Frame Header Bar */}
-          <div className="flex items-center justify-between px-2 text-[11px] font-mono-code">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-2 text-[10px] sm:text-[11px] font-mono-code">
             <div className="flex items-center gap-2 text-[#0284c7] dark:text-cyan-400 font-bold">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse" />
-              <span>// LOCATION HUD: ERODE, TAMIL NADU, INDIA (11.3410° N, 77.7172° E)</span>
+              <span className="w-2 h-2 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse shrink-0" />
+              <span className="truncate">// LOCATION HUD: ERODE, TAMIL NADU, INDIA</span>
             </div>
             <a
               href="https://www.google.com/maps/place/Erode,+Tamil+Nadu"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-[#0284c7] dark:text-cyan-400 hover:text-white font-bold transition-colors bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-500/40 px-3 py-1 rounded-lg cursor-pointer hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600"
+              className="inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-[#0284c7] dark:text-cyan-400 hover:text-white font-bold transition-colors bg-cyan-50 dark:bg-cyan-950/80 border border-cyan-200 dark:border-cyan-500/40 px-3 py-1.5 sm:py-1 rounded-lg cursor-pointer hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 self-start sm:self-auto"
             >
-              <span>OPEN GOOGLE MAPS</span>
+              <span>OPEN MAPS</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>

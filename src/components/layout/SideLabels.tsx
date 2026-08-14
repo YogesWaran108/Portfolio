@@ -78,21 +78,21 @@ export const SideLabels: React.FC<SideLabelsProps> = ({ onScrollTop, activeSecti
 
       {/* Fixed Right Scroll to Top Widget (Visible when scrolled down) */}
       <div
-        className={`fixed right-8 bottom-12 z-20 flex flex-col items-center gap-3 transition-all duration-300 ${
+        className={`fixed right-4 bottom-6 md:right-8 md:bottom-12 z-40 flex flex-col items-center gap-2 transition-all duration-300 ${
           showScrollTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
       >
         <button
           onClick={onScrollTop}
-          className="w-10 h-10 rounded-full bg-slate-200 hover:bg-[#2563eb] dark:bg-white/10 dark:hover:bg-[#3b82f6] text-slate-900 dark:text-white hover:text-white transition-all duration-300 flex items-center justify-center shadow-md focus:outline-none group cursor-pointer"
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-900/90 dark:bg-slate-900/90 border border-slate-700/50 hover:bg-[#2563eb] dark:hover:bg-[#3b82f6] text-white transition-all duration-300 flex items-center justify-center shadow-2xl backdrop-blur-md focus:outline-none group cursor-pointer"
           title="Back to Top"
         >
-          <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+          <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-y-0.5 transition-transform" />
         </button>
 
         <button
           onClick={onScrollTop}
-          className="writing-mode-vertical rotate-180 uppercase font-mono-code font-bold tracking-[0.25em] text-slate-900 dark:text-white text-[10px] hover:text-[#2563eb] dark:hover:text-[#3b82f6] transition-colors cursor-pointer select-none"
+          className="hidden md:block writing-mode-vertical rotate-180 uppercase font-mono-code font-bold tracking-[0.25em] text-slate-900 dark:text-white text-[10px] hover:text-[#2563eb] dark:hover:text-[#3b82f6] transition-colors cursor-pointer select-none"
         >
           BACK TO TOP
         </button>

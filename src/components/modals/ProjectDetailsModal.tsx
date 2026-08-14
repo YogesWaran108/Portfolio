@@ -190,15 +190,15 @@ export const ProjectDetailsModal: React.FC<ProjectDetailsModalProps> = ({ projec
 
         {/* Modal Footer CTA */}
         {project.liveUrl && (
-          <div className="p-6 border-t border-white/10 bg-[#060a14] flex items-center justify-between shrink-0 rounded-b-3xl">
-            <div className="text-xs font-mono-code text-neutral-400">
+          <div className="p-4 sm:p-6 border-t border-white/10 bg-[#060a14] flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0 rounded-b-3xl">
+            <div className="text-xs font-mono-code text-neutral-400 hidden sm:block">
               Live Webpage URL
             </div>
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-extrabold text-xs font-mono-code uppercase tracking-wider transition-all shadow-lg shadow-blue-500/25 border border-blue-400/30 group"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-extrabold text-xs font-mono-code uppercase tracking-wider transition-all shadow-lg shadow-blue-500/25 border border-blue-400/30 group"
             >
               <span>VISIT SITE</span>
               <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
