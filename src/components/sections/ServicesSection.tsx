@@ -41,6 +41,7 @@ interface AccordionItem {
 export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateContact }) => {
   const [openAccordion, setOpenAccordion] = useState<string | null>('ux-audits');
   const polyRef = useRef<SVGSVGElement>(null);
+  const polyMobileRef = useRef<SVGSVGElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   // Accordion Items as depicted in Image 4
@@ -191,10 +192,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
     }
   };
 
-  // Continuous floating 3D Wireframe animation using GSAP
+  // Continuous floating 3D Wireframe animation using GSAP (animates both desktop & mobile 3D wireframe SVGs)
   useEffect(() => {
-    if (polyRef.current) {
-      gsap.to(polyRef.current, {
+    const targets = [polyRef.current, polyMobileRef.current].filter(Boolean);
+    if (targets.length > 0) {
+      gsap.to(targets, {
         rotateY: 360,
         rotateX: 180,
         duration: 25,
@@ -263,6 +265,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
           {/* Mobile-Only Background 3D Polyhedron Wireframe (Positioned behind heading on mobile screens) */}
           <div className="lg:hidden absolute -top-8 left-1/2 -translate-x-1/2 w-64 h-64 sm:w-80 sm:h-80 opacity-25 dark:opacity-35 pointer-events-none z-0 flex items-center justify-center">
             <svg
+              ref={polyMobileRef}
               viewBox="0 0 200 200"
               className="w-full h-full text-[#0284c7] dark:text-cyan-400/80 drop-shadow-[0_0_25px_rgba(2,132,199,0.3)] dark:drop-shadow-[0_0_25px_rgba(34,211,238,0.4)]"
               style={{ transformStyle: 'preserve-3d' }}
