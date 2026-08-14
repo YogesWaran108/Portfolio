@@ -84,7 +84,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           {/* Minimal Headline */}
           <h1
             ref={headlineRef}
-            className="font-display text-3xl sm:5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.08] text-slate-900 dark:text-white mb-3 sm:mb-4 max-w-3xl font-bold"
+            className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.08] text-slate-900 dark:text-white mb-3 sm:mb-4 max-w-3xl font-bold"
           >
             I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-sky-400 to-blue-600 dark:from-cyan-400 dark:via-sky-400 dark:to-blue-500">Yogeshwaran.</span>
           </h1>

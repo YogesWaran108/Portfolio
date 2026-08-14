@@ -148,19 +148,17 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[999999] bg-black text-white flex items-center justify-center select-none overflow-hidden"
+      className="fixed inset-0 z-[999999] bg-black text-white flex items-center justify-center select-none overflow-hidden px-4"
       style={{
         fontFamily: "'Outfit', sans-serif",
         fontStyle: 'normal',
-        color: 'rgba(255, 255, 255, 0.9)',
-        fontSize: '42px',
-        lineHeight: '50px'
+        color: 'rgba(255, 255, 255, 0.9)'
       }}
     >
-      {/* PHASE 1 WRAPPER: Absolute positioned container holding initial phrase inline */}
+      {/* PHASE 1 WRAPPER: Absolute positioned container holding 3 words inline in a row */}
       <div
         ref={phase1WrapperRef}
-        className="absolute inset-0 m-auto flex items-center justify-center gap-3 whitespace-nowrap text-[42px] leading-[50px]"
+        className="absolute inset-0 m-auto flex flex-row items-center justify-center gap-1.5 sm:gap-2.5 md:gap-3 whitespace-nowrap text-lg sm:text-2xl md:text-3xl lg:text-[42px] leading-tight md:leading-[50px] max-w-[94vw] px-2 text-center"
       >
         <span
           ref={pioneeringRef}
@@ -185,7 +183,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       {/* PHASE 2 WRAPPER: Absolute positioned container sized to fit final text */}
       <div
         ref={phase2WrapperRef}
-        className="absolute inset-0 m-auto flex items-center justify-center w-fit h-fit text-[42px] leading-[50px]"
+        className="absolute inset-0 m-auto flex items-center justify-center w-fit h-fit max-w-[94vw] text-lg sm:text-2xl md:text-3xl lg:text-[42px] leading-tight md:leading-[50px]"
       >
         {/* Blue-Cyan Gradient Rectangle placed ABSOLUTELY OVER TEXT (z-index 10) */}
         <div
@@ -196,7 +194,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
         {/* Final Text: Yogeshwaran.Dev (Opacity 0 initially, layered at bottom z-0) */}
         <h1
           ref={finalTextRef}
-          className="relative z-0 font-[100] tracking-[0.25em] text-white uppercase whitespace-nowrap text-[42px] leading-[50px]"
+          className="relative z-0 font-[100] tracking-[0.1em] sm:tracking-[0.18em] md:tracking-[0.25em] text-white uppercase whitespace-nowrap text-lg sm:text-2xl md:text-3xl lg:text-[42px] leading-tight md:leading-[50px] px-1"
         >
           Yogeshwaran<span className="text-[#06b6d4] font-normal">.Dev</span>
         </h1>
