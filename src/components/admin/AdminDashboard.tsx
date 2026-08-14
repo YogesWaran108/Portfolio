@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getApiBaseUrl } from '../../utils/api';
 import {
   Inbox,
   Search,
@@ -53,10 +54,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onBackToSite }) 
   const [replySuccessMessage, setReplySuccessMessage] = useState<string | null>(null);
 
   const fetchInquiries = async () => {
+    const API_BASE = getApiBaseUrl();
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/contact/inquiries');
+      const res = await fetch(`${API_BASE}/api/contact/inquiries`);
       if (!res.ok) {
         throw new Error(`Server returned HTTP ${res.status}`);
       }
@@ -75,9 +77,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onBackToSite }) 
   }, []);
 
   const handleStatusChange = async (id: string, newStatus: string) => {
+    const API_BASE = getApiBaseUrl();
     setUpdatingId(id);
     try {
-      const res = await fetch(`/api/contact/inquiries/${id}`, {
+      const res = await fetch(`${API_BASE}/api/contact/inquiries/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
@@ -95,9 +98,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onBackToSite }) 
   };
 
   const handleDelete = async (id: string) => {
+    const API_BASE = getApiBaseUrl();
     if (!window.confirm(`Are you sure you want to delete inquiry ${id}?`)) return;
     try {
-      const res = await fetch(`/api/contact/inquiries/${id}`, {
+      const res = await fetch(`${API_BASE}/api/contact/inquiries/${id}`, {
         method: 'DELETE'
       });
       if (res.ok) {
@@ -206,11 +210,12 @@ Yogeshwaran Ravishankar`
   const handleSendReply = async () => {
     if (!replyingInquiry || !replyBody.trim()) return;
 
+    const API_BASE = getApiBaseUrl();
     setIsSendingReply(true);
     setReplySuccessMessage(null);
 
     try {
-      const res = await fetch('/api/contact/reply', {
+      const res = await fetch(`${API_BASE}/api/contact/reply`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

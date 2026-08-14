@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, MapPin, Send, CheckCircle, Sparkles, Clock, Globe, ExternalLink, Check, Phone } from 'lucide-react';
+import { getApiBaseUrl } from '../../utils/api';
 
 interface ContactSectionProps {
   initialService?: string | null;
@@ -44,8 +45,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService }
     e.preventDefault();
     setIsSubmitting(true);
 
+    const API_BASE = getApiBaseUrl();
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(`${API_BASE}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
