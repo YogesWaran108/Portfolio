@@ -94,7 +94,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
             ref={subtextRef}
             className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-xl mb-6"
           >
-            I'm a Frontend Software Engineer specializing in building scalable, high-performance web applications with React, Redux, TypeScript & GSAP.
+            I'm a Front-End Web Developer with 2.5+ years of hands-on experience building responsive, SEO-optimized websites with React.js, JavaScript & CSS frameworks.
           </p>
 
           {/* Action Buttons (Vibrant Blue-to-Cyan Mix Theme) */}

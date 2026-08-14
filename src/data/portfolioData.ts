@@ -16,7 +16,6 @@ export interface Education {
 
 // -------------------------------------------------------------
 // CENTRALIZED SITE & PROJECT URL CONFIGURATION
-// (Edit any live demo or social profile link here in the future)
 // -------------------------------------------------------------
 export const PROJECT_URLS = {
   sculpxtech: 'https://www.sculpxtechlabs.com/',
@@ -30,38 +29,38 @@ export const PROJECT_URLS = {
 
 export const USER_INFO = {
   name: 'Yogeshwaran Ravishankar',
-  title: 'Frontend Software Engineer',
+  title: 'Front-End Web Developer',
   phone: '+91-6382755066',
   email: 'yogeshwar11012k02@gmail.com',
-  location: 'Erode, Tamil Nadu, India',
+  location: 'Erode, Tamil Nadu',
   github: PROJECT_URLS.githubProfile,
   linkedin: PROJECT_URLS.linkedinProfile,
   aboutMe:
-    'Frontend Software Engineer with 2.5+ years of experience designing and developing scalable web applications using React, Redux, and TypeScript. Skilled in designing scalable UI architectures, writing clean maintainable code, and collaborating cross-functionally to deliver features on time.',
+    'Front-end web developer with 2.5+ years of hands-on experience building responsive, SEO-optimized websites using JavaScript, HTML5, and modern CSS frameworks. Skilled in web performance optimization, cross-browser compatibility, and clean, well-documented, scalable code. A keen eye for detail, strong problem-solving skills, and an eagerness to learn and adapt quickly to new tools and workflows. Comfortable collaborating closely with design and content teams to bring new pages and experiences to life.',
   languages: ['Tamil (Native)', 'English (Professional)']
 };
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Sculpxtech Labs',
-    role: 'Frontend Software Engineer',
-    period: '2023 - Present',
-    location: 'India',
+    role: 'Front-End Developer',
+    period: 'Mar 2026 – Jun 2026',
+    location: 'Erode, Tamil Nadu',
     highlights: [
-      'Architected high-throughput React & TypeScript frontend platforms for B2B enterprise clients.',
-      'Optimized application bundle sizes and network request waterfalls, boosting Lighthouse scores by 35%.',
-      'Engineered reusable UI components and collaborated cross-functionally to ensure timely feature delivery.'
+      'Built and maintained responsive, SEO-optimized web pages with React.js and JavaScript, collaborating with design and content teams.',
+      'Applied SEO best practices and performance optimization across page templates, ensuring cross-browser compatibility.',
+      'Troubleshot front-end issues and maintained clean, scalable, well-documented code while implementing interactive UI animations.'
     ]
   },
   {
-    company: 'Accenture',
-    role: 'Associate Frontend Engineer',
-    period: '2021 - 2023',
+    company: 'Accenture (British Telecom)',
+    role: 'App Development Associate',
+    period: 'Nov 2023 – Mar 2026',
     location: 'India',
     highlights: [
-      'Developed responsive UI modules using React.js, Redux Toolkit, and Tailwind CSS.',
-      'Collaborated with product managers, designers, and QA to deliver high-performance user interfaces.',
-      'Implemented automated unit testing and code quality pipelines.'
+      'Built enterprise-grade, reusable UI components using React and JavaScript for high-traffic business applications.',
+      'Optimized front-end performance and troubleshot issues to maintain a smooth, accessible user experience.',
+      'Collaborated with product managers, designers, and QA within cross-functional Agile teams.'
     ]
   }
 ];
@@ -73,17 +72,17 @@ export const EDUCATION_DATA: Education = {
 };
 
 export const METRICS: Metric[] = [
-  { label: 'Years Experience', value: 2.5, suffix: '+', subtext: 'React, Redux & TypeScript development' },
-  { label: 'Enterprise Projects', value: 5, suffix: '+', subtext: 'Production platforms & B2B suites' },
-  { label: 'Lighthouse Score', value: 98, suffix: '%', subtext: 'Average performance optimization' },
-  { label: 'B.Tech IT CGPA', value: 7.66, suffix: '', subtext: 'Kongu Engineering College' }
+  { label: 'Years Experience', value: 2.5, suffix: '+', subtext: 'React.js, JavaScript & CSS frameworks' },
+  { label: 'Key Projects Delivered', value: 5, suffix: '+', subtext: 'Sculpxtech, Koredio SaaS & Sawaraiya' },
+  { label: 'B.Tech IT CGPA', value: 7.66, suffix: '', subtext: 'Kongu Engineering College' },
+  { label: 'Lighthouse Performance', value: 98, suffix: '%', subtext: 'SEO & Web performance optimization' }
 ];
 
 export const PROJECTS: Project[] = [
   {
     id: 'sculpxtech-b2b',
     title: 'Sculpxtech Product Platform & B2B Suite',
-    subtitle: 'Enterprise UI Design System & Component Library',
+    subtitle: 'Enterprise UI Components & Design System',
     category: 'Enterprise B2B',
     year: '2026',
     client: 'Sculpxtech Labs',
@@ -91,17 +90,17 @@ export const PROJECTS: Project[] = [
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
     featuredImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400&auto=format&fit=crop',
     secondaryImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop',
-    description: 'Designed and developed enterprise UI components using React.js and Tailwind CSS, implementing reusable component libraries and optimizing page load performance.',
-    fullDescription: 'Sculpxtech Product Platform & B2B Suite is an enterprise workstation engineered to streamline client operations and asset management. Built with React.js, Redux Toolkit, and Tailwind CSS, the platform delivers high-density data tables, modular UI widgets, type-safe API consumers, and strict coding compliance.',
+    description: 'Designed and developed enterprise UI components using React.js and Tailwind CSS; implemented reusable component libraries and optimized page load performance.',
+    fullDescription: 'Sculpxtech Product Platform & B2B Suite is an enterprise workstation engineered to streamline client operations and asset management. Built with React.js, Redux, and Tailwind CSS, the platform delivers high-density data tables, modular UI widgets, type-safe API consumers, and strict coding compliance.',
     challenge: 'Architecting a standardized, reusable component system capable of servicing multiple enterprise client sub-apps without styling regressions or bundle bloat.',
-    solution: 'Created a modular design system using React, TypeScript, and Tailwind CSS, with rigorous Redux state normalization and lazy-loaded routes for instant initial loads.',
+    solution: 'Created a modular design system using React, JavaScript, and Tailwind CSS, with rigorous state normalization and lazy-loaded routes for instant initial loads.',
     deliverables: [
       'Reusable React & Tailwind Component Library',
-      'Redux State Management Architecture',
       'Page Load & Asset Bundle Optimization',
-      'REST API Integration & Type Contracts'
+      'SEO Best Practices & Cross-Browser Compatibility',
+      'REST API Integration & Responsive UI'
     ],
-    techStack: ['React.js', 'Redux', 'TypeScript', 'Tailwind CSS', 'RESTful APIs', 'Node.js'],
+    techStack: ['React.js', 'JavaScript', 'Tailwind CSS', 'HTML5', 'Git/GitHub', 'SEO Best Practices'],
     metrics: [
       { label: 'Page Load Boost', value: '45% Faster' },
       { label: 'Component Reusability', value: '85%' },
@@ -113,25 +112,25 @@ export const PROJECTS: Project[] = [
   {
     id: 'koredio-gym',
     title: 'Koredio Gym SaaS Platform',
-    subtitle: 'Multi-Tenant B2B Gym Management & E-Commerce Dashboard',
+    subtitle: 'Multi-Tenant B2B SaaS Dashboard & E-Commerce Integration',
     category: 'Enterprise B2B',
     year: '2026',
     client: 'Koredio Fitness Tech',
-    role: 'Lead Frontend Developer',
+    role: 'Front-End Developer',
     image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop',
     featuredImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1400&auto=format&fit=crop',
     secondaryImage: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1000&auto=format&fit=crop',
     description: 'Built a multi-tenant B2B SaaS dashboard with React.js and Tailwind CSS, including responsive admin panels, membership modules, and e-commerce integration.',
     fullDescription: 'Koredio Gym SaaS is a comprehensive management platform designed for fitness clubs and chains. It provides gym owners with real-time membership analytics, automated recurring billing interfaces, trainer scheduling, and an integrated e-commerce shop for supplement sales.',
     challenge: 'Managing complex state synchronization across multi-tenant admin dashboards, workout logs, member check-ins, and checkout carts.',
-    solution: 'Implemented centralized Redux state slices with optimistic UI updates and responsive Tailwind CSS layout grids optimized for desktop workstations and mobile devices.',
+    solution: 'Implemented centralized React state slices with optimistic UI updates and responsive Tailwind CSS layout grids optimized for desktop workstations and mobile devices.',
     deliverables: [
       'Multi-Tenant Responsive Admin Panel',
       'Membership & Check-in Management Modules',
       'E-Commerce Storefront & Payment Gateway UI',
       'Member Analytics & Attendance Reports'
     ],
-    techStack: ['React.js', 'Redux', 'TypeScript', 'Tailwind CSS', 'RESTful APIs', 'Git'],
+    techStack: ['React.js', 'Tailwind CSS', 'JavaScript', 'HTML5', 'RESTful APIs', 'Git/GitHub'],
     metrics: [
       { label: 'Member Onboarding Time', value: '-60%' },
       { label: 'Mobile Responsiveness', value: '100%' },
@@ -143,16 +142,16 @@ export const PROJECTS: Project[] = [
   {
     id: 'sawaraiya-hotel',
     title: 'Sawaraiya Luxury Hotel Digital Experience',
-    subtitle: 'Interactive High-End Hospitality Brand Website',
+    subtitle: 'Interactive Brand Website with GSAP Scroll Animations',
     category: 'UI/UX & Animation',
     year: '2025',
     client: 'Sawaraiya Hospitality Group',
-    role: 'Interactive Experience Developer',
+    role: 'Front-End Developer',
     image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop',
     featuredImage: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1400&auto=format&fit=crop',
     secondaryImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1000&auto=format&fit=crop',
     description: 'Created an interactive, high-end brand website with GSAP scroll animations, video integration, and fully responsive layouts.',
-    fullDescription: 'Sawaraiya Hotel is a luxury resort experience that blends serene architecture with modern digital elegance. Built with React.js and GSAP ScrollTrigger, the website features scroll-synced video backgrounds, interactive suite tours, and fluid section reveals that evoke tranquility.',
+    fullDescription: 'Sawaraiya Hotel is a luxury resort experience that blends serene architecture with modern digital elegance. Built with React.js and GSAP ScrollTrigger, the website features scroll-synced video backgrounds, interactive suite tours, and fluid section reveals.',
     challenge: 'Achieving butter-smooth 60 FPS scroll performance while scrubbing high-definition video backgrounds and rendering animated typography overlays.',
     solution: 'Utilized hardware-accelerated GSAP timelines with debounced scroll triggers and adaptive media loading for pristine 60 FPS playback on all screen sizes.',
     deliverables: [
@@ -161,7 +160,7 @@ export const PROJECTS: Project[] = [
       'Direct Reservation Request Modal',
       'Fully Responsive Cross-Device UI'
     ],
-    techStack: ['React.js', 'GSAP ScrollTrigger', 'JavaScript', 'Tailwind CSS', 'Responsive Design'],
+    techStack: ['React.js', 'GSAP ScrollTrigger', 'JavaScript', 'Tailwind CSS', 'Responsive Web Design'],
     metrics: [
       { label: 'Direct Inquiries Growth', value: '+140%' },
       { label: 'Average Session Duration', value: '3m 45s' },
@@ -173,11 +172,11 @@ export const PROJECTS: Project[] = [
   {
     id: 'sawaraiya-jewelry',
     title: 'Sawaraiya Ultra-Premium Jewelry Platform',
-    subtitle: '3D-Enabled E-Commerce Storefront with React Three Fiber',
+    subtitle: '3D-Enabled Product Storefront with React Three Fiber & GSAP',
     category: '3D & eCommerce',
     year: '2025',
     client: 'Sawaraiya Luxury Atelier',
-    role: '3D Web Frontend Specialist',
+    role: 'Front-End Developer',
     image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1200&auto=format&fit=crop',
     featuredImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1400&auto=format&fit=crop',
     secondaryImage: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1000&auto=format&fit=crop',
@@ -191,7 +190,7 @@ export const PROJECTS: Project[] = [
       'Custom Ring Customizer & Size Tool',
       'E-Commerce Cart Integration'
     ],
-    techStack: ['React.js', 'React Three Fiber', 'Three.js', 'GSAP', 'Tailwind CSS', 'TypeScript'],
+    techStack: ['React.js', 'React Three Fiber', 'GSAP', 'Tailwind CSS', 'JavaScript', 'HTML5'],
     metrics: [
       { label: '3D Engagement Rate', value: '78%' },
       { label: 'E-Commerce Conversion', value: '+3.4%' },
@@ -207,7 +206,7 @@ export const PROJECTS: Project[] = [
     category: 'UI/UX & Animation',
     year: '2024',
     client: 'Learners Leaf EdTech',
-    role: 'Frontend Developer',
+    role: 'Front-End Developer',
     image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1200&auto=format&fit=crop',
     featuredImage: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop',
     secondaryImage: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop',
@@ -221,7 +220,7 @@ export const PROJECTS: Project[] = [
       'Interactive Quiz & Assessment UI',
       'Cross-Device Responsive Layout'
     ],
-    techStack: ['React.js', 'Redux', 'TypeScript', 'Tailwind CSS', 'RESTful APIs'],
+    techStack: ['React.js', 'JavaScript', 'HTML5', 'Tailwind CSS', 'CSS / Responsive Design'],
     metrics: [
       { label: 'Course Completion Rate', value: '+32%' },
       { label: 'User Retention', value: '88%' },
@@ -236,167 +235,167 @@ export const SERVICES: Service[] = [
   {
     id: 'scalable-web-ui',
     number: '01',
-    title: 'Scalable React & TypeScript Web UI',
-    subtitle: 'Crafting clean, maintainable, and high-performance user interfaces for enterprise web apps.',
-    description: 'Designing and building component-driven frontend architecture using React.js, TypeScript, and Redux. We enforce strict coding standards, reusability, and modular state management to ensure long-term scalability.',
+    title: 'Responsive & SEO-Optimized Web UI',
+    subtitle: 'Building clean, scalable, and cross-browser compatible websites using React.js and modern CSS.',
+    description: 'Designing and maintaining responsive, SEO-optimized web pages with React.js, JavaScript, HTML5, and Tailwind CSS. We apply SEO best practices, performance optimizations, and maintain clean, well-documented code.',
     deliverables: [
-      'Reusable React & Tailwind Design Systems',
-      'Redux State Management Architecture',
-      'Type-Safe Frontend Contracts with TypeScript',
-      'Responsive Web Design Across All Breakpoints'
+      'Responsive Web Design Across All Breakpoints',
+      'SEO Best Practices & Meta Tag Optimization',
+      'Web Performance & Accessibility Tweaks',
+      'Cross-Browser Compatibility Assurance'
     ],
     iconName: 'Atom',
-    highlights: ['2.5+ Years Frontend Expertise', 'Redux State Management', 'Clean & Maintainable Code']
+    highlights: ['2.5+ Years Hands-On Experience', 'SEO Best Practices', 'Clean & Scalable Code']
   },
   {
     id: 'interactive-gsap-3d',
     number: '02',
-    title: 'Interactive GSAP & 3D Web Experiences',
-    subtitle: 'Engaging user experiences with scroll-triggered animations and 3D WebGL visuals.',
-    description: 'Elevating brand web presences through GSAP ScrollTrigger timelines, video background syncing, and 3D product viewports using React Three Fiber and Three.js.',
+    title: 'Interactive UI Animations & 3D Visuals',
+    subtitle: 'Troubleshooting front-end issues and delivering smooth, animated web experiences.',
+    description: 'Implementing interactive UI animations with GSAP and 3D product viewports with React Three Fiber. Creating high-end brand websites with video integration and fluid transitions.',
     deliverables: [
       'GSAP Scroll-Triggered Storytelling',
       'React Three Fiber 3D Product Showcase',
       'Smooth Page Transitions & Micro-Interactions',
-      'Hardware-Accelerated 60 FPS Motion'
+      'Cross-Device Animation Performance'
     ],
     iconName: 'Sparkles',
-    highlights: ['GSAP ScrollTrigger Specialist', 'React Three Fiber', '60 FPS Smooth Motion']
+    highlights: ['GSAP Scroll Animations', '3D WebGL (R3F)', '60 FPS Smooth Transitions']
   },
   {
     id: 'b2b-saas-dashboards',
     number: '03',
-    title: 'Multi-Tenant B2B SaaS & Admin Portals',
-    subtitle: 'Transforming complex business logic into intuitive, high-efficiency dashboards.',
-    description: 'Engineering responsive admin panels, membership management modules, and integrated e-commerce checkout flows built for speed, reliability, and ease of use.',
+    title: 'Enterprise UI Components & B2B SaaS',
+    subtitle: 'Building enterprise-grade, reusable component libraries for high-traffic business applications.',
+    description: 'Engineering multi-tenant B2B SaaS dashboards, responsive admin panels, membership modules, and e-commerce integrations using React.js and Tailwind CSS.',
     deliverables: [
-      'Responsive Multi-Tenant Admin Panels',
-      'Role-Based Controls & Data Tables',
-      'E-Commerce & Checkout UI Integration',
-      'User Telemetry & Analytics Widgets'
+      'Enterprise Reusable UI Component Libraries',
+      'Multi-Tenant Responsive Admin Dashboards',
+      'Membership & E-Commerce Module UI',
+      'Agile Cross-Functional Team Collaboration'
     ],
     iconName: 'LayoutGrid',
-    highlights: ['Multi-Tenant SaaS Panels', 'E-Commerce Integration', 'High-Density Workstations']
+    highlights: ['Sculpxtech Labs & Accenture', 'Reusable Component Libraries', 'Agile Team Delivery']
   },
   {
     id: 'api-performance-opt',
     number: '04',
-    title: 'API Integration & Performance Optimization',
-    subtitle: 'Sub-second page speeds, RESTful API synchronization, and root-cause debugging.',
-    description: 'Integrating frontend components with backend REST APIs, conducting thorough root-cause analysis for bug fixes, and optimizing page load speeds for 95+ Lighthouse scores.',
+    title: 'Web Performance Optimization & Debugging',
+    subtitle: 'Troubleshooting front-end issues, optimizing load speeds, and maintaining code quality.',
+    description: 'Optimizing front-end performance across page templates, conducting root-cause analysis for bug fixes, and maintaining clean, well-documented code.',
     deliverables: [
-      'RESTful API Endpoint Integration',
-      'Lighthouse 95+ Performance Audit & Tweaks',
-      'Root-Cause Analysis & Debugging',
-      'Agile/Scrum Cross-Functional Delivery'
+      'Lighthouse Performance & Asset Optimization',
+      'Front-End Bug Fixes & Root-Cause Troubleshooting',
+      'Git / GitHub Version Control & Workflows',
+      'Cross-Browser Testing & Quality Assurance'
     ],
     iconName: 'Zap',
-    highlights: ['RESTful API Integration', 'Root-Cause Analysis', 'Lighthouse 95+ Score']
+    highlights: ['Web Performance', 'Cross-Browser Compatibility', 'Git/GitHub Workflow']
   }
 ];
 
 export const TECH_STACK: TechItem[] = [
+  {
+    name: 'JavaScript',
+    category: 'Frontend',
+    level: 98,
+    experience: '2.5+ yrs',
+    icon: 'FileCode',
+    description: 'Core programming language for building dynamic, interactive web features.'
+  },
+  {
+    name: 'HTML5',
+    category: 'Frontend',
+    level: 98,
+    experience: '2.5+ yrs',
+    icon: 'FileCode',
+    description: 'Semantic markup, accessible page structures, and SEO best practices.'
+  },
+  {
+    name: 'CSS / Tailwind CSS',
+    category: 'Frontend',
+    level: 98,
+    experience: '2.5+ yrs',
+    icon: 'Palette',
+    description: 'Modern CSS frameworks, utility-first styling, and responsive web design.'
+  },
   {
     name: 'React.js',
     category: 'Frontend',
     level: 96,
     experience: '2.5+ yrs',
     icon: 'Atom',
-    description: 'Building scalable, reusable UI component architecture and custom hooks.'
+    description: 'Building enterprise UI components, modular design systems, and web apps.'
   },
   {
-    name: 'TypeScript',
+    name: 'Responsive Web Design',
     category: 'Frontend',
-    level: 94,
+    level: 98,
     experience: '2.5+ yrs',
-    icon: 'FileCode',
-    description: 'Strict type definitions, interfaces, and maintainable type-safe contracts.'
+    icon: 'LayoutGrid',
+    description: 'Fluid layouts and media queries ensuring 100% cross-device compatibility.'
   },
   {
-    name: 'Redux & Redux Toolkit',
-    category: 'Frontend',
+    name: 'Cross-Browser Compatibility',
+    category: 'Architecture & Tools',
+    level: 96,
+    experience: '2.5+ yrs',
+    icon: 'Globe2',
+    description: 'Ensuring seamless rendering across Chrome, Safari, Firefox, and Edge.'
+  },
+  {
+    name: 'SEO Best Practices',
+    category: 'Architecture & Tools',
     level: 95,
     experience: '2.5+ yrs',
-    icon: 'Database',
-    description: 'Predictable state containers, normalized state slices, and asynchronous thunks.'
+    icon: 'Zap',
+    description: 'Optimizing page metadata, heading hierarchy, and Lighthouse SEO scores.'
   },
   {
-    name: 'JavaScript (ES6+)',
-    category: 'Frontend',
-    level: 98,
+    name: 'Web Performance & Accessibility',
+    category: 'Architecture & Tools',
+    level: 95,
     experience: '2.5+ yrs',
-    icon: 'FileCode',
-    description: 'Modern asynchronous JS, closures, array methods, and DOM optimization.'
+    icon: 'Cpu',
+    description: 'Optimizing asset load times, DOM trees, and WCAG accessibility.'
   },
   {
-    name: 'Tailwind CSS',
-    category: 'Frontend',
-    level: 98,
-    experience: '2.5+ yrs',
-    icon: 'Palette',
-    description: 'Utility-first styling, design token systems, and responsive grid layouts.'
-  },
-  {
-    name: 'GSAP & ScrollTrigger',
-    category: 'Animation & 3D',
-    level: 92,
-    experience: '2.5+ yrs',
-    icon: 'Move',
-    description: 'Scroll-driven animations, timeline sequencing, and smooth micro-interactions.'
-  },
-  {
-    name: 'React Three Fiber & Three.js',
-    category: 'Animation & 3D',
-    level: 88,
-    experience: '2+ yrs',
-    icon: 'Box',
-    description: '3D model viewports, WebGL lighting, and interactive product viewports.'
-  },
-  {
-    name: 'RESTful APIs & Node.js',
-    category: 'Backend & DB',
-    level: 90,
-    experience: '2.5+ yrs',
-    icon: 'Server',
-    description: 'Integrating frontend components with backend APIs and JSON handling.'
-  },
-  {
-    name: 'Git & GitHub',
+    name: 'Git / GitHub',
     category: 'Architecture & Tools',
     level: 95,
     experience: '2.5+ yrs',
     icon: 'GitBranch',
-    description: 'Version control, branch management, pull requests, and collaborative workflows.'
+    description: 'Version control, branch management, pull requests, and collaborative code reviews.'
   },
   {
-    name: 'Performance Optimization',
+    name: 'Problem-Solving & Fast Learner',
     category: 'Architecture & Tools',
-    level: 94,
+    level: 96,
     experience: '2.5+ yrs',
-    icon: 'Cpu',
-    description: 'Lazy loading, bundle splitting, asset compression, and Lighthouse audits.'
+    icon: 'Sparkles',
+    description: 'Troubleshooting front-end issues and adapting quickly to new tools and workflows.'
   }
 ];
 
 export const PROCESS_STEPS = [
   {
     number: '01',
-    title: 'UI Architecture & Requirements',
-    description: 'Analyzing specifications, defining clean UI component contracts, establishing state architecture, and planning execution milestones.'
+    title: 'Requirement Analysis & Design Sync',
+    description: 'Collaborating with product managers and design teams to understand requirements and plan responsive page structures.'
   },
   {
     number: '02',
-    title: 'Component Design & Motion',
-    description: 'Building modular React/Redux components with Tailwind CSS, integrating GSAP scroll animations, and ensuring responsive layouts.'
+    title: 'React & Tailwind UI Development',
+    description: 'Building reusable, clean UI components with React.js, JavaScript, and Tailwind CSS following strict coding standards.'
   },
   {
     number: '03',
-    title: 'API Integration & State Flow',
-    description: 'Connecting frontend state with RESTful APIs, optimizing data flow, conducting root-cause debugging, and ensuring seamless client-server sync.'
+    title: 'SEO & Performance Optimization',
+    description: 'Applying SEO best practices, optimizing image bundles, and ensuring butter-smooth GSAP animations across devices.'
   },
   {
     number: '04',
-    title: 'Testing & Production Delivery',
-    description: 'Executing cross-browser QA audits, Lighthouse score optimizations, CI/CD deployment pipelines, and delivering production-ready releases.'
+    title: 'Cross-Browser QA & Git Delivery',
+    description: 'Conducting cross-browser testing, troubleshooting front-end issues, and deploying clean code via Git/GitHub.'
   }
 ];
