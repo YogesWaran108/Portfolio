@@ -16,7 +16,9 @@ import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { PortfolioPage } from './pages/PortfolioPage';
 import { ContactPage } from './pages/ContactPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { AdminDashboard } from './components/admin/AdminDashboard';
+import { AdminLoginPage } from './components/admin/AdminLoginPage';
 
 gsap.registerPlugin(ScrollTrigger, Flip);
 
@@ -25,7 +27,10 @@ export function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [customCursor, setCustomCursor] = useState(true);
-  const [currentPage, setCurrentPage] = useState<'home' | 'portfolio' | 'services' | 'contact' | 'admin'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'portfolio' | 'services' | 'contact' | 'admin' | '404'>('home');
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
+    return sessionStorage.getItem('isAdminAuth') === 'true';
+  });
   const [activeSection, setActiveSection] = useState('hero');
   const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
   const [deviceMode, setDeviceMode] = useState<DeviceMode>('desktop');
@@ -215,9 +220,16 @@ export function App() {
       } else if (pathname === 'contact') {
         setCurrentPage('contact');
         setActiveSection('contact');
-      } else {
+      } else if (pathname === 'admin' || pathname === 'inquiries') {
+        setCurrentPage('admin');
+        setActiveSection('admin');
+      } else if (pathname === '' || pathname === 'home') {
         setCurrentPage('home');
         setActiveSection('hero');
+      } else {
+        // Unrecognized route fallback to 404 page
+        setCurrentPage('404');
+        setActiveSection('404');
       }
 
       // If any trailing hash exists in URL, strip it silently
@@ -374,7 +386,23 @@ export function App() {
         ) : currentPage === 'contact' ? (
           <ContactPage onNavigate={handleNavigate} initialService={preselectedService} />
         ) : currentPage === 'admin' ? (
-          <AdminDashboard onBackToSite={() => handleNavigate('home')} />
+          isAdminAuthenticated ? (
+            <AdminDashboard
+              onBackToSite={() => handleNavigate('home')}
+              onLogout={() => {
+                sessionStorage.removeItem('isAdminAuth');
+                setIsAdminAuthenticated(false);
+                handleNavigate('home');
+              }}
+            />
+          ) : (
+            <AdminLoginPage
+              onLoginSuccess={() => setIsAdminAuthenticated(true)}
+              onBackToHome={() => handleNavigate('home')}
+            />
+          )
+        ) : currentPage === '404' ? (
+          <NotFoundPage onNavigate={handleNavigate} />
         ) : (
           <HomePage onNavigate={handleNavigate} />
         )}

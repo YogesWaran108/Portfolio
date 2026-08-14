@@ -35,9 +35,10 @@ export interface InquiryItem {
 
 interface AdminDashboardProps {
   onBackToSite?: () => void;
+  onLogout?: () => void;
 }
 
-export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onBackToSite }) => {
+export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onBackToSite, onLogout }) => {
   const [inquiries, setInquiries] = useState<InquiryItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -319,6 +320,16 @@ Yogeshwaran Ravishankar`
               <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-[#0284c7]' : ''}`} />
               <span>REFRESH DATA</span>
             </button>
+
+            {onLogout && (
+              <button
+                onClick={onLogout}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-xs font-mono-code font-bold text-red-600 dark:text-red-400 transition-all cursor-pointer shadow-sm"
+                title="Log out of Admin HUD"
+              >
+                <span>LOG OUT</span>
+              </button>
+            )}
           </div>
         </div>
 

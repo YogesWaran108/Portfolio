@@ -155,26 +155,26 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
         color: 'rgba(255, 255, 255, 0.9)'
       }}
     >
-      {/* PHASE 1 WRAPPER: Absolute positioned container holding 3 words inline in a row */}
+      {/* PHASE 1 WRAPPER: Absolute positioned container holding 3 words stacked in 3 rows and 1 column */}
       <div
         ref={phase1WrapperRef}
-        className="absolute inset-0 m-auto flex flex-row items-center justify-center gap-1.5 sm:gap-2.5 md:gap-3 whitespace-nowrap text-lg sm:text-2xl md:text-3xl lg:text-[42px] leading-tight md:leading-[50px] max-w-[94vw] px-2 text-center"
+        className="absolute inset-0 m-auto flex flex-col items-center justify-center gap-1.5 sm:gap-3 text-3xl sm:text-5xl md:text-6xl lg:text-[64px] leading-tight sm:leading-none max-w-[94vw] px-2 text-center"
       >
         <span
           ref={pioneeringRef}
-          className="font-[100] inline-block tracking-normal"
+          className="font-[100] inline-block tracking-normal uppercase text-slate-300"
         >
           Pioneering
         </span>
         <span
           ref={creativeRef}
-          className="font-[400] inline-block tracking-normal text-white"
+          className="font-[400] inline-block tracking-normal text-white uppercase"
         >
           Creative
         </span>
         <span
           ref={excellenceRef}
-          className="font-[400] inline-block tracking-normal"
+          className="font-[400] inline-block tracking-normal text-cyan-400 uppercase"
         >
           Excellence
         </span>
