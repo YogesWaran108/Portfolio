@@ -36,23 +36,23 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
   };
 
   return (
-    <div className="min-h-screen bg-[#060a14] text-white flex items-center justify-center p-4 sm:p-6 relative overflow-hidden font-sans select-none">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-white flex items-center justify-center p-4 sm:p-6 relative overflow-hidden font-sans select-none transition-colors duration-300">
       {/* Background Neon Grid Accents */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(2,132,199,0.15),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(2,132,199,0.12),transparent_70%)] pointer-events-none" />
       
-      <div className="max-w-md w-full relative z-10 bg-[#0b1329] border border-cyan-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 backdrop-blur-xl">
+      <div className="max-w-md w-full relative z-10 bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-cyan-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 backdrop-blur-xl transition-colors duration-300">
         {/* Top Header Badge */}
         <div className="text-center space-y-3">
-          <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mx-auto shadow-lg shadow-cyan-500/20">
+          <div className="w-16 h-16 rounded-2xl bg-cyan-50 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/30 flex items-center justify-center text-[#0284c7] dark:text-cyan-400 mx-auto shadow-md">
             <Lock className="w-8 h-8" />
           </div>
-          <span className="inline-block px-3.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-[#0284c7] dark:text-cyan-400 text-[11px] font-mono-code uppercase tracking-widest font-extrabold">
+          <span className="inline-block px-3.5 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-500/40 text-[#0284c7] dark:text-cyan-400 text-[11px] font-mono-code uppercase tracking-widest font-extrabold">
             // RESTRICTED ACCESS GATE
           </span>
-          <h2 className="font-display text-3xl font-extrabold text-white tracking-tight">
+          <h2 className="font-display text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Admin Portal Login
           </h2>
-          <p className="text-xs text-slate-400 font-light">
+          <p className="text-xs text-slate-600 dark:text-slate-400 font-light">
             Authenticate with your authorized administrator credentials.
           </p>
         </div>
@@ -61,8 +61,8 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Email Address Input Field */}
           <div>
-            <label className="block text-[11px] font-mono-code uppercase text-slate-300 mb-2 font-semibold flex items-center gap-1.5">
-              <User className="w-3.5 h-3.5 text-cyan-400" />
+            <label className="block text-[11px] font-mono-code uppercase text-slate-700 dark:text-slate-300 mb-2 font-semibold flex items-center gap-1.5">
+              <User className="w-3.5 h-3.5 text-[#0284c7] dark:text-cyan-400" />
               <span>EMAIL ADDRESS</span>
             </label>
             <input
@@ -74,14 +74,14 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
               placeholder="name@domain.com"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full bg-slate-950/80 border border-white/15 focus:border-cyan-400 px-4 py-3 text-white placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl font-mono-code"
+              className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-white/15 focus:border-[#0284c7] dark:focus:border-cyan-400 px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl font-mono-code"
             />
           </div>
 
           {/* Password Input Field */}
           <div>
-            <label className="block text-[11px] font-mono-code uppercase text-slate-300 mb-2 font-semibold flex items-center gap-1.5">
-              <KeyRound className="w-3.5 h-3.5 text-cyan-400" />
+            <label className="block text-[11px] font-mono-code uppercase text-slate-700 dark:text-slate-300 mb-2 font-semibold flex items-center gap-1.5">
+              <KeyRound className="w-3.5 h-3.5 text-[#0284c7] dark:text-cyan-400" />
               <span>PASSWORD</span>
             </label>
             <input
@@ -91,12 +91,12 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
               placeholder="••••••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-slate-950/80 border border-white/15 focus:border-cyan-400 px-4 py-3 text-white placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl font-mono-code"
+              className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-white/15 focus:border-[#0284c7] dark:focus:border-cyan-400 px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl font-mono-code"
             />
           </div>
 
           {errorMsg && (
-            <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-mono-code flex items-center gap-2">
+            <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-600 dark:text-red-400 text-xs font-mono-code flex items-center gap-2">
               <ShieldAlert className="w-4 h-4 shrink-0" />
               <span>{errorMsg}</span>
             </div>
@@ -119,11 +119,11 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
         </form>
 
         {/* Return Link (Strictly Secure, No Hints) */}
-        <div className="pt-2 text-center border-t border-white/10">
+        <div className="pt-2 text-center border-t border-slate-200 dark:border-white/10">
           <button
             type="button"
             onClick={onBackToHome}
-            className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer font-mono-code underline underline-offset-4 block mx-auto pt-2"
+            className="text-xs text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors cursor-pointer font-mono-code underline underline-offset-4 block mx-auto pt-2"
           >
             ← Return to Public Portfolio
           </button>

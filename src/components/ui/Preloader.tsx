@@ -155,26 +155,26 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
         color: 'rgba(255, 255, 255, 0.9)'
       }}
     >
-      {/* PHASE 1 WRAPPER: Absolute positioned container holding 3 words stacked in 3 rows and 1 column */}
+      {/* PHASE 1 WRAPPER: 3 rows 1 col on mobile (< md), 1 row 3 cols on bigger screens (md+) */}
       <div
         ref={phase1WrapperRef}
-        className="absolute inset-0 m-auto flex flex-col items-center justify-center gap-1.5 sm:gap-3 text-3xl sm:text-5xl md:text-6xl lg:text-[64px] leading-tight sm:leading-none max-w-[94vw] px-2 text-center"
+        className="absolute inset-0 m-auto flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 lg:gap-4 text-3xl sm:text-4xl md:text-[42px] lg:text-[48px] leading-tight md:leading-[50px] md:whitespace-nowrap max-w-[94vw] px-2 text-center"
       >
         <span
           ref={pioneeringRef}
-          className="font-[100] inline-block tracking-normal uppercase text-slate-300"
+          className="font-[100] inline-block tracking-normal uppercase md:normal-case text-slate-300 md:text-[#ffffffe6]"
         >
           Pioneering
         </span>
         <span
           ref={creativeRef}
-          className="font-[400] inline-block tracking-normal text-white uppercase"
+          className="font-[400] inline-block tracking-normal text-white uppercase md:normal-case font-semibold md:font-normal"
         >
           Creative
         </span>
         <span
           ref={excellenceRef}
-          className="font-[400] inline-block tracking-normal text-cyan-400 uppercase"
+          className="font-[400] inline-block tracking-normal text-cyan-400 md:text-white uppercase md:normal-case font-semibold md:font-normal"
         >
           Excellence
         </span>
@@ -183,7 +183,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       {/* PHASE 2 WRAPPER: Absolute positioned container sized to fit final text */}
       <div
         ref={phase2WrapperRef}
-        className="absolute inset-0 m-auto flex items-center justify-center w-fit h-fit max-w-[94vw] text-lg sm:text-2xl md:text-3xl lg:text-[42px] leading-tight md:leading-[50px]"
+        className="absolute inset-0 m-auto flex items-center justify-center w-fit h-fit max-w-[94vw] text-xl sm:text-3xl md:text-4xl lg:text-[48px] leading-tight md:leading-[50px]"
       >
         {/* Blue-Cyan Gradient Rectangle placed ABSOLUTELY OVER TEXT (z-index 10) */}
         <div
@@ -191,10 +191,10 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
           className="absolute inset-0 bg-gradient-to-r from-[#0284c7] via-[#0284c7] to-[#06b6d4] z-10 rounded-sm shadow-md shadow-cyan-500/20 pointer-events-none"
         />
 
-        {/* Final Text: Yogeshwaran.Dev (Opacity 0 initially, layered at bottom z-0) */}
+        {/* Final Text: Yogeshwaran.Dev (Increased text size for mobile) */}
         <h1
           ref={finalTextRef}
-          className="relative z-0 font-[100] tracking-[0.1em] sm:tracking-[0.18em] md:tracking-[0.25em] text-white uppercase whitespace-nowrap text-lg sm:text-2xl md:text-3xl lg:text-[42px] leading-tight md:leading-[50px] px-1"
+          className="relative z-0 font-[100] tracking-[0.14em] sm:tracking-[0.2em] md:tracking-[0.25em] text-white uppercase whitespace-nowrap text-xl sm:text-3xl md:text-4xl lg:text-[48px] leading-tight md:leading-[50px] px-1"
         >
           Yogeshwaran<span className="text-[#06b6d4] font-normal">.Dev</span>
         </h1>
