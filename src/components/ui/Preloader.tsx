@@ -22,7 +22,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
   useGSAP(
     () => {
-      // Prevent scrolling while preloader sequence is active
+      // Lock scrolling while preloader sequence is active
       document.body.style.overflow = 'hidden';
 
       const tl = gsap.timeline({
@@ -66,7 +66,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
       // -------------------------------------------------------------
       // GSAP TIMELINE SEQUENCE (~4.2 SECONDS TOTAL)
-      // PHASE 1: SPEED UP (FASTER) | PHASE 2: SLOW DOWN (CINEMATIC)
+      // OVERLAP: UNMASKING STARTS WHILE BAR MOVES BACK FROM RIGHT TO CENTER
       // -------------------------------------------------------------
 
       // 1. Initial Reveal (FASTER): Fade in 'Pioneering' (font-weight: 100)
@@ -102,41 +102,43 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       // Unhide Phase 2 Wrapper
       .set(phase2WrapperRef.current, { visibility: 'visible', opacity: 1 })
 
-      // 4. Bar Creation (SLOWER): Animate scaleX from 0 to 1 with transformOrigin: "left center"
+      // 4. Bar Creation: Animate scaleX from 0 to 1 with transformOrigin: "left center"
       .to(rectRef.current, {
         scaleX: 1,
         duration: 0.65,
         ease: 'expo.inOut'
       })
 
-      // 5. Smooth Shift (SLOWER & GENTLE): Animate rectangle right (x: 20), then back to center (x: 0) using sine.inOut
+      // 5. Shift Right (x: 25)
       .to(rectRef.current, {
-        x: 20,
-        duration: 0.42,
+        x: 25,
+        duration: 0.38,
         ease: 'sine.inOut'
       })
+
+      // 6. Return from Right to Center (x: 0)
       .to(rectRef.current, {
         x: 0,
         duration: 0.42,
         ease: 'sine.inOut'
       })
 
-      // 6. The Wipe Reveal (SLOWER & CINEMATIC): Change transformOrigin to "right center", collapse scaleX to 0, simultaneously fading text from 0 to 1 with "<"
-      .set(rectRef.current, { transformOrigin: 'right center' })
+      // 7. OVERLAP: Right as the bar moves back from right to center, start unmasking (scaleX 1 -> 0 & text opacity 0 -> 1)
+      .set(rectRef.current, { transformOrigin: 'right center' }, '-=0.28')
       .to(rectRef.current, {
         scaleX: 0,
-        duration: 0.7,
+        duration: 0.65,
         ease: 'expo.inOut'
-      })
+      }, '<')
       .to(finalTextRef.current, {
         opacity: 1,
-        duration: 0.7,
+        duration: 0.65,
         ease: 'power2.out'
       }, '<')
 
       .to({}, { duration: 0.6 })
 
-      // 7. Smooth curtain slide reveal to main portfolio
+      // 8. Smooth curtain slide reveal to main portfolio
       .to(containerRef.current, {
         yPercent: -100,
         duration: 0.85,
