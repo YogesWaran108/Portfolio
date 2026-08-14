@@ -29,7 +29,7 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
         sessionStorage.setItem('adminUser', username.trim());
         onLoginSuccess();
       } else {
-        setErrorMsg('Invalid Username or Password. Access Denied.');
+        setErrorMsg('Invalid Credentials. Access Denied.');
       }
       setIsVerifying(false);
     }, 600);
@@ -53,23 +53,25 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
             Admin Portal Login
           </h2>
           <p className="text-xs text-slate-400 font-light">
-            Authenticate with your authorized credentials to access the response HUD.
+            Authenticate with your authorized administrator credentials.
           </p>
         </div>
 
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Username Input Field */}
+          {/* Email Address Input Field */}
           <div>
             <label className="block text-[11px] font-mono-code uppercase text-slate-300 mb-2 font-semibold flex items-center gap-1.5">
               <User className="w-3.5 h-3.5 text-cyan-400" />
-              <span>EMAIL / USERNAME</span>
+              <span>EMAIL ADDRESS</span>
             </label>
             <input
               type="email"
               required
               autoFocus
-              placeholder="yogeshwar11012k02@gmail.com"
+              autoComplete="username"
+              spellCheck={false}
+              placeholder="name@domain.com"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="w-full bg-slate-950/80 border border-white/15 focus:border-cyan-400 px-4 py-3 text-white placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl font-mono-code"
@@ -85,7 +87,8 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
             <input
               type="password"
               required
-              placeholder="Enter admin password..."
+              autoComplete="current-password"
+              placeholder="••••••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full bg-slate-950/80 border border-white/15 focus:border-cyan-400 px-4 py-3 text-white placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl font-mono-code"
@@ -115,7 +118,7 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
           </button>
         </form>
 
-        {/* Return Link (Without any hints) */}
+        {/* Return Link (Strictly Secure, No Hints) */}
         <div className="pt-2 text-center border-t border-white/10">
           <button
             type="button"
