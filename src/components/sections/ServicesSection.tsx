@@ -289,13 +289,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
           <div className="lg:col-span-8 space-y-6 sm:space-y-8 relative z-10">
             {/* Heading formatted into 2 clean rows on mobile screens */}
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
-              <span className="block sm:inline">
+              <span className="block md:inline">
                 Website{' '}
                 <span className="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400">
                   Design
                 </span>
               </span>{' '}
-              <span className="block sm:inline font-light">
+              <span className="block md:inline font-light">
                 and{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-sky-500 to-blue-600 dark:from-sky-300 dark:to-cyan-300">
                   Development
@@ -357,13 +357,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
           {/* Left Column: Approach Heading & CTA */}
           <div className="lg:col-span-5 space-y-6">
             <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              <span className="block sm:inline">
+              <span className="block md:inline">
                 Your{' '}
                 <span className="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400">
                   Approach
                 </span>
               </span>{' '}
-              <span className="block sm:inline font-light">
+              <span className="block md:inline font-light">
                 and{' '}
                 <span className="text-slate-600 dark:text-slate-300 font-normal">
                   Work Specifics

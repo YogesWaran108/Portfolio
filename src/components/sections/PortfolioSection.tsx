@@ -98,8 +98,8 @@ export const PortfolioSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-8">
               <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.08]">
-                <span className="block sm:inline">Designing a</span>{' '}
-                <span className="block sm:inline">
+                <span className="block md:inline">Designing a</span>{' '}
+                <span className="block md:inline">
                   <span className="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400">
                     Better World
                   </span>{' '}
@@ -122,21 +122,21 @@ export const PortfolioSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Filter Category Tabs (Utilizing 100% available horizontal space on mobile) */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-8 sm:mb-16 border-b border-slate-200 dark:border-white/10 pb-5 sm:pb-6">
+        {/* Filter Category Tabs (Mobile: 2-col full width, Desktop (md+): Original Inline Pills) */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4 mb-8 md:mb-16 border-b border-slate-200 dark:border-white/10 pb-5 md:pb-6">
           <div className="flex items-center gap-2 text-xs font-mono-code text-slate-500 dark:text-neutral-400 font-semibold">
             <Filter className="w-4 h-4 text-[#0284c7] dark:text-cyan-400" />
             <span>CATEGORIES:</span>
           </div>
 
-          <div className="grid grid-cols-2 sm:flex sm:flex-wrap w-full sm:w-auto gap-2 sm:gap-2.5">
+          <div className="grid grid-cols-2 md:flex md:flex-wrap w-full md:w-auto gap-2 md:gap-2.5">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`w-full sm:w-auto px-3 sm:px-5 py-2.5 sm:py-2 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-mono-code uppercase tracking-wider text-center flex items-center justify-center transition-all duration-300 cursor-pointer ${
+                className={`w-full md:w-auto px-3 md:px-5 py-2.5 md:py-2 rounded-xl md:rounded-full text-[11px] md:text-xs font-mono-code uppercase tracking-wider text-center flex items-center justify-center transition-all duration-300 cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 text-white font-extrabold shadow-lg shadow-cyan-500/25 scale-[1.02] sm:scale-105 border border-cyan-400/40'
+                    ? 'bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 text-white font-extrabold shadow-lg shadow-cyan-500/25 scale-[1.02] md:scale-105 border border-cyan-400/40'
                     : 'bg-white hover:bg-slate-100 hover:border-cyan-300 text-slate-700 dark:bg-white/5 dark:hover:bg-white/10 dark:text-neutral-300 border border-slate-200 dark:border-white/10 shadow-sm'
                 }`}
               >
