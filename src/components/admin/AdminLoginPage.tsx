@@ -18,11 +18,11 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
     setErrorMsg(null);
 
     setTimeout(() => {
-      const validUsernames = ['admin', 'yogesh', 'yogeshwaran'];
-      const validPasswords = ['admin123', 'yogesh2026', 'admin', 'password123'];
+      const targetUser = 'yogeshwar11012k02@gmail.com';
+      const targetPass = 'yogesh@123';
 
-      const userMatch = validUsernames.includes(username.trim().toLowerCase());
-      const passMatch = validPasswords.includes(password.trim().toLowerCase());
+      const userMatch = username.trim().toLowerCase() === targetUser.toLowerCase();
+      const passMatch = password.trim() === targetPass;
 
       if (userMatch && passMatch) {
         sessionStorage.setItem('isAdminAuth', 'true');
@@ -53,7 +53,7 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
             Admin Portal Login
           </h2>
           <p className="text-xs text-slate-400 font-light">
-            Authenticate with your admin username and password to access the HUD.
+            Authenticate with your authorized credentials to access the response HUD.
           </p>
         </div>
 
@@ -63,13 +63,13 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
           <div>
             <label className="block text-[11px] font-mono-code uppercase text-slate-300 mb-2 font-semibold flex items-center gap-1.5">
               <User className="w-3.5 h-3.5 text-cyan-400" />
-              <span>USERNAME</span>
+              <span>EMAIL / USERNAME</span>
             </label>
             <input
-              type="text"
+              type="email"
               required
               autoFocus
-              placeholder="e.g. admin or yogesh"
+              placeholder="yogeshwar11012k02@gmail.com"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="w-full bg-slate-950/80 border border-white/15 focus:border-cyan-400 px-4 py-3 text-white placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl font-mono-code"
@@ -115,15 +115,12 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
           </button>
         </form>
 
-        {/* Quick Hint & Return Link */}
-        <div className="pt-2 text-center space-y-3 border-t border-white/10">
-          <p className="text-[11px] font-mono-code text-slate-500">
-            Username: <span className="text-cyan-400 font-bold">admin</span> / Password: <span className="text-cyan-400 font-bold">admin123</span>
-          </p>
+        {/* Return Link (Without any hints) */}
+        <div className="pt-2 text-center border-t border-white/10">
           <button
             type="button"
             onClick={onBackToHome}
-            className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer font-mono-code underline underline-offset-4 block mx-auto"
+            className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer font-mono-code underline underline-offset-4 block mx-auto pt-2"
           >
             ← Return to Public Portfolio
           </button>
