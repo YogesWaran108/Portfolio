@@ -169,26 +169,40 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onScrollTop, activeR
 
           {/* Right Column: Legal Links */}
           <div className="lg:col-span-3 space-y-4 text-sm text-slate-400 font-normal pt-1">
-            <a href="#privacy" onClick={(e) => e.preventDefault()} className="block hover:text-white transition-colors">
+            <button
+              type="button"
+              onClick={() => handleLinkClick('privacy-policy')}
+              className="block hover:text-white transition-colors cursor-pointer text-left"
+            >
               Privacy Policy
-            </a>
-            <a href="#terms" onClick={(e) => e.preventDefault()} className="block hover:text-white transition-colors">
+            </button>
+            <button
+              type="button"
+              onClick={() => handleLinkClick('terms-conditions')}
+              className="block hover:text-white transition-colors cursor-pointer text-left"
+            >
               Terms and conditions
-            </a>
-            <a href="#cookie" onClick={(e) => e.preventDefault()} className="block hover:text-white transition-colors">
+            </button>
+            <button
+              type="button"
+              onClick={() => handleLinkClick('cookie-policy')}
+              className="block hover:text-white transition-colors cursor-pointer text-left"
+            >
               Cookie Policy
-            </a>
-            <a href="#careers" onClick={(e) => e.preventDefault()} className="block hover:text-white transition-colors">
-              Careers
-            </a>
+            </button>
           </div>
         </div>
 
-        {/* Bottom Centered Copyright Line */}
+        {/* Bottom Centered Copyright Line (Redirects to Admin Page View) */}
         <div className="pt-8 border-t border-white/10 text-center">
-          <p className="text-xs text-slate-500 font-light">
+          <button
+            type="button"
+            onClick={() => handleLinkClick('admin')}
+            className="text-xs text-slate-500 hover:text-slate-300 transition-colors cursor-pointer font-light hover:underline"
+            title="Admin Portal Access"
+          >
             © Copyright 2026 - Yogeshwaran Ravishankar. All Rights Reserved.
-          </p>
+          </button>
         </div>
       </div>
     </footer>

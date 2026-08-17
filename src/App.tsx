@@ -17,6 +17,9 @@ import { ServicesPage } from './pages/ServicesPage';
 import { PortfolioPage } from './pages/PortfolioPage';
 import { ContactPage } from './pages/ContactPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsConditionsPage } from './pages/TermsConditionsPage';
+import { CookiePolicyPage } from './pages/CookiePolicyPage';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { AdminLoginPage } from './components/admin/AdminLoginPage';
 
@@ -27,7 +30,7 @@ export function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [customCursor, setCustomCursor] = useState(true);
-  const [currentPage, setCurrentPage] = useState<'home' | 'portfolio' | 'services' | 'contact' | 'admin' | '404'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'portfolio' | 'services' | 'contact' | 'admin' | '404' | 'privacy-policy' | 'terms-conditions' | 'cookie-policy'>('home');
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
     return sessionStorage.getItem('isAdminAuth') === 'true';
   });
@@ -220,6 +223,15 @@ export function App() {
       } else if (pathname === 'contact') {
         setCurrentPage('contact');
         setActiveSection('contact');
+      } else if (pathname === 'privacy-policy') {
+        setCurrentPage('privacy-policy');
+        setActiveSection('privacy-policy');
+      } else if (pathname === 'terms-conditions') {
+        setCurrentPage('terms-conditions');
+        setActiveSection('terms-conditions');
+      } else if (pathname === 'cookie-policy') {
+        setCurrentPage('cookie-policy');
+        setActiveSection('cookie-policy');
       } else if (pathname === 'admin' || pathname === 'inquiries') {
         setCurrentPage('admin');
         setActiveSection('admin');
@@ -279,6 +291,21 @@ export function App() {
       setCurrentPage('contact');
       setActiveSection('contact');
       window.history.pushState(null, '', '/contact');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (normalized === 'privacy-policy') {
+      setCurrentPage('privacy-policy');
+      setActiveSection('privacy-policy');
+      window.history.pushState(null, '', '/privacy-policy');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (normalized === 'terms-conditions') {
+      setCurrentPage('terms-conditions');
+      setActiveSection('terms-conditions');
+      window.history.pushState(null, '', '/terms-conditions');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (normalized === 'cookie-policy') {
+      setCurrentPage('cookie-policy');
+      setActiveSection('cookie-policy');
+      window.history.pushState(null, '', '/cookie-policy');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (normalized === 'admin' || normalized === 'inquiries') {
       setCurrentPage('admin');
@@ -385,6 +412,12 @@ export function App() {
           <ServicesPage onNavigate={handleNavigate} />
         ) : currentPage === 'contact' ? (
           <ContactPage onNavigate={handleNavigate} initialService={preselectedService} />
+        ) : currentPage === 'privacy-policy' ? (
+          <PrivacyPolicyPage onNavigate={handleNavigate} />
+        ) : currentPage === 'terms-conditions' ? (
+          <TermsConditionsPage onNavigate={handleNavigate} />
+        ) : currentPage === 'cookie-policy' ? (
+          <CookiePolicyPage onNavigate={handleNavigate} />
         ) : currentPage === 'admin' ? (
           isAdminAuthenticated ? (
             <AdminDashboard
