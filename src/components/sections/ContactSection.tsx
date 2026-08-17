@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, MapPin, Send, CheckCircle, Clock, ExternalLink, Check, Phone, ShieldCheck, Sparkles, Layers } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle, Clock, ExternalLink, Check, Phone, Sparkles, Layers, X } from 'lucide-react';
 import { getApiBaseUrl } from '../../utils/api';
 
 interface ContactSectionProps {
@@ -32,6 +32,26 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService }
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionMeta, setSubmissionMeta] = useState<{ inquiryId?: string; emailPreviewUrl?: string } | null>(null);
+
+  // Close modal handler
+  const closeModal = () => {
+    setIsSubmitted(false);
+    setSubmissionMeta(null);
+    setFormData({ name: '', email: '', message: '' });
+    setSelectedPackage(null);
+    setSelectedServices([]);
+  };
+
+  // Close on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isSubmitted) {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isSubmitted]);
 
   const togglePackage = (pkg: string) => {
     setSelectedPackage((prev) => (prev === pkg ? null : pkg));
@@ -117,6 +137,78 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService }
       id="contact"
       className="relative bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-white py-12 sm:py-20 px-4 sm:px-12 md:px-16 border-b border-slate-200 dark:border-white/10 transition-colors duration-300 select-none"
     >
+      {/* ------------------------------------------------------------- */}
+      {/* POP-OUT SUCCESS MODAL OVERLAY WITH TOP-RIGHT CLOSE BUTTON     */}
+      {/* ------------------------------------------------------------- */}
+      {isSubmitted && (
+        <div
+          className="fixed inset-0 z-[999999] flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-md transition-all duration-300 animate-fadeIn"
+          onClick={closeModal}
+        >
+          <div
+            className="relative max-w-lg w-full bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-cyan-500/40 rounded-3xl p-6 sm:p-10 shadow-2xl text-center space-y-6 overflow-hidden transition-all transform scale-100"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* TOP-RIGHT CORNER CLOSE BUTTON (X) */}
+            <button
+              onClick={closeModal}
+              className="absolute top-5 right-5 p-2.5 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all cursor-pointer border border-slate-200 dark:border-white/10 shadow-sm"
+              title="Close Modal"
+              aria-label="Close Pop-out Screen"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            {/* Glowing Success Badge Icon */}
+            <div className="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-md pt-0.5">
+              <CheckCircle className="w-8 h-8" />
+            </div>
+
+            {/* Title & Description */}
+            <div className="space-y-2">
+              <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                Inquiry Dispatched!
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+                Thank you for reaching out, <span className="text-[#0284c7] dark:text-cyan-400 font-bold">{formData.name}</span>. An automated acknowledgment & confirmation receipt has been sent to your email at <span className="text-slate-900 dark:text-white font-medium">{formData.email}</span>.
+              </p>
+            </div>
+
+            {/* Inquiry Reference ID */}
+            {submissionMeta?.inquiryId && (
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-500/30 text-xs font-mono-code text-[#0284c7] dark:text-cyan-400 font-bold">
+                <span>INQUIRY REF: {submissionMeta.inquiryId}</span>
+              </div>
+            )}
+
+            {/* Email Preview Link */}
+            {submissionMeta?.emailPreviewUrl && (
+              <div>
+                <a
+                  href={submissionMeta.emailPreviewUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-xs font-mono-code text-[#0284c7] dark:text-cyan-400 hover:underline"
+                >
+                  <span>VIEW GENERATED EMAIL RECEIPT PREVIEW</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            )}
+
+            {/* Action Button */}
+            <div className="pt-2">
+              <button
+                onClick={closeModal}
+                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-xs font-mono-code uppercase font-bold tracking-widest transition-all cursor-pointer shadow-lg shadow-cyan-500/25"
+              >
+                DONE / SEND ANOTHER MESSAGE
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-5xl mx-auto space-y-12">
         {/* Top Hero Header Banner */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
@@ -179,232 +271,183 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService }
 
         {/* Handcrafted Bespoke Project Inquiry Form Card */}
         <div className="bg-white dark:bg-[#0b1329] p-6 sm:p-10 md:p-12 rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl dark:shadow-2xl transition-all duration-300">
-          {isSubmitted ? (
-            <div className="text-center py-12 space-y-5 animate-fadeIn">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-sm">
-                <CheckCircle className="w-8 h-8" />
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Form Section Header */}
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+              <div className="flex items-center gap-2.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-cyan-500" />
+                <p className="text-xs font-mono-code uppercase tracking-widest text-[#0284c7] dark:text-cyan-400 font-bold">
+                  // PROJECT INQUIRY & ESTIMATE FORM
+                </p>
               </div>
-              <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-                Inquiry & Confirmation Email Dispatched!
-              </h3>
-              <p className="text-slate-600 dark:text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                Thank you for reaching out, <span className="text-[#0284c7] dark:text-cyan-400 font-semibold">{formData.name}</span>. An automated acknowledgment & confirmation receipt has been sent to your email at <span className="text-slate-900 dark:text-white font-medium">{formData.email}</span>.
-              </p>
-
-              {submissionMeta?.inquiryId && (
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-500/30 text-xs font-mono-code text-[#0284c7] dark:text-cyan-400 font-bold">
-                  <span>INQUIRY REF: {submissionMeta.inquiryId}</span>
-                </div>
-              )}
-
-              {submissionMeta?.emailPreviewUrl && (
-                <div className="pt-2">
-                  <a
-                    href={submissionMeta.emailPreviewUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-mono-code text-[#0284c7] dark:text-cyan-400 hover:underline"
-                  >
-                    <span>VIEW GENERATED EMAIL RECEIPT PREVIEW</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              )}
-
-              <div className="pt-4">
-                <button
-                  onClick={() => {
-                    setIsSubmitted(false);
-                    setSubmissionMeta(null);
-                    setFormData({ name: '', email: '', message: '' });
-                    setSelectedPackage(null);
-                    setSelectedServices([]);
-                  }}
-                  className="px-6 py-3 rounded-xl bg-slate-100 dark:bg-white/10 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 hover:text-white text-slate-900 dark:text-white text-xs font-mono-code uppercase font-bold tracking-wider transition-all cursor-pointer border border-slate-200 dark:border-white/10"
-                >
-                  Send Another Message
-                </button>
-              </div>
+              <span className="text-[10px] font-mono-code text-slate-500 dark:text-slate-400 uppercase tracking-wider hidden sm:inline">
+                CONFIDENTIAL INQUIRY
+              </span>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-8">
-              {/* Form Section Header */}
-              <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-cyan-500" />
-                  <p className="text-xs font-mono-code uppercase tracking-widest text-[#0284c7] dark:text-cyan-400 font-bold">
-                    // PROJECT INQUIRY & ESTIMATE FORM
-                  </p>
-                </div>
-                <span className="text-[10px] font-mono-code text-slate-500 dark:text-slate-400 uppercase tracking-wider hidden sm:inline">
-                  CONFIDENTIAL INQUIRY
-                </span>
-              </div>
 
-              {/* Client Info Inputs */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-[11px] font-mono-code uppercase text-slate-700 dark:text-slate-300 mb-2 font-semibold">
-                    FULL NAME *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Elena Vance"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-white/10 hover:border-[#0284c7] dark:hover:border-cyan-400/50 focus:border-[#0284c7] dark:focus:border-cyan-400 px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl focus:bg-white dark:focus:bg-slate-900"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-mono-code uppercase text-slate-700 dark:text-slate-300 mb-2 font-semibold">
-                    WORK EMAIL ADDRESS *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="e.g. elena@company.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-white/10 hover:border-[#0284c7] dark:hover:border-cyan-400/50 focus:border-[#0284c7] dark:focus:border-cyan-400 px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl focus:bg-white dark:focus:bg-slate-900"
-                  />
-                </div>
-              </div>
-
-              {/* Service Package Tier (SINGLE SELECTION ONLY - Radio Behavior) */}
-              <div className="space-y-3 pt-2">
-                <div className="flex items-center justify-between">
-                  <label className="block text-[11px] font-mono-code uppercase text-slate-900 dark:text-white font-extrabold tracking-wider flex items-center gap-2">
-                    <Layers className="w-3.5 h-3.5 text-[#0284c7] dark:text-cyan-400" />
-                    <span>SERVICE PACKAGE TIER</span>
-                  </label>
-                  <span className="text-[10px] font-mono-code text-slate-500 dark:text-slate-400 uppercase font-medium">
-                    (SELECT 1 PACKAGE)
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {packageTiers.map((tier) => {
-                    const fullText = `${tier.name} (${tier.price} ${tier.details})`;
-                    const isSelected = selectedPackage === fullText;
-
-                    return (
-                      <button
-                        type="button"
-                        key={tier.id}
-                        onClick={() => togglePackage(fullText)}
-                        className={`p-4 rounded-xl text-left transition-all duration-300 cursor-pointer border relative flex flex-col justify-between ${
-                          isSelected
-                            ? 'bg-[#0284c7]/5 dark:bg-cyan-950/50 border-[#0284c7] dark:border-cyan-400 text-slate-900 dark:text-white shadow-md shadow-cyan-500/10 scale-[1.01]'
-                            : 'bg-slate-50 dark:bg-slate-950/60 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:border-cyan-400/60 hover:bg-slate-100/70 dark:hover:bg-slate-900/80'
-                        }`}
-                      >
-                        <div className="flex items-center justify-between w-full mb-1">
-                          <span className="text-xs font-mono-code font-bold uppercase tracking-wider text-slate-900 dark:text-white">
-                            {tier.name}
-                          </span>
-                          {/* Clean Custom Radio Circle */}
-                          <div
-                            className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all shrink-0 ${
-                              isSelected
-                                ? 'border-[#0284c7] dark:border-cyan-400 bg-white dark:bg-cyan-950'
-                                : 'border-slate-300 dark:border-white/20 bg-white dark:bg-white/5'
-                            }`}
-                          >
-                            {isSelected && <div className="w-2 h-2 rounded-full bg-[#0284c7] dark:bg-cyan-400" />}
-                          </div>
-                        </div>
-
-                        <div className="flex items-baseline gap-1.5 mt-1">
-                          <span className="text-base font-display font-extrabold text-[#0284c7] dark:text-cyan-400">
-                            {tier.price}
-                          </span>
-                          <span className="text-[10px] font-mono-code text-slate-500 dark:text-slate-400">
-                            {tier.details}
-                          </span>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Technical & Engineering Services (MULTI SELECTION - DEFAULT: NONE PRE-SELECTED) */}
-              <div className="space-y-3 pt-2">
-                <div className="flex items-center justify-between">
-                  <label className="block text-[11px] font-mono-code uppercase text-slate-900 dark:text-white font-extrabold tracking-wider flex items-center gap-2">
-                    <Sparkles className="w-3.5 h-3.5 text-[#0284c7] dark:text-cyan-400" />
-                    <span>TECHNICAL & ENGINEERING SERVICES</span>
-                  </label>
-                  <span className="text-[10px] font-mono-code text-[#0284c7] dark:text-cyan-400 font-bold uppercase">
-                    {selectedServices.length} SELECTED
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {engineeringServices.map((service) => {
-                    const isSelected = selectedServices.includes(service);
-                    return (
-                      <button
-                        type="button"
-                        key={service}
-                        onClick={() => toggleService(service)}
-                        className={`p-3.5 rounded-xl text-xs font-mono-code font-bold text-left transition-all duration-300 flex items-center justify-between cursor-pointer border ${
-                          isSelected
-                            ? 'bg-gradient-to-r from-cyan-600 via-sky-500 to-blue-600 border-cyan-400 text-white shadow-lg shadow-cyan-500/20 scale-[1.01]'
-                            : 'bg-slate-50 dark:bg-slate-950/60 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:border-cyan-400/60 hover:bg-slate-100/70 dark:hover:bg-slate-900/80'
-                        }`}
-                      >
-                        <span className="truncate pr-2">{service}</span>
-                        {/* Custom Checkbox Pill */}
-                        <div
-                          className={`w-4 h-4 rounded-md border flex items-center justify-center transition-all shrink-0 ${
-                            isSelected
-                              ? 'bg-white border-white text-[#0284c7]'
-                              : 'border-slate-300 dark:border-white/20 bg-white dark:bg-white/5'
-                          }`}
-                        >
-                          {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Project Scope & Goals Textarea */}
-              <div className="pt-2">
+            {/* Client Info Inputs */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
                 <label className="block text-[11px] font-mono-code uppercase text-slate-700 dark:text-slate-300 mb-2 font-semibold">
-                  PROJECT SCOPE & GOALS *
+                  FULL NAME *
                 </label>
-                <textarea
-                  rows={5}
+                <input
+                  type="text"
                   required
-                  placeholder="Describe your project requirements, target timeline, key deliverables, and budget objectives..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-white/10 hover:border-[#0284c7] dark:hover:border-cyan-400/50 focus:border-[#0284c7] dark:focus:border-cyan-400 px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl resize-none focus:bg-white dark:focus:bg-slate-900"
+                  placeholder="e.g. Elena Vance"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-white/10 hover:border-[#0284c7] dark:hover:border-cyan-400/50 focus:border-[#0284c7] dark:focus:border-cyan-400 px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl focus:bg-white dark:focus:bg-slate-900"
                 />
               </div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 text-white font-display font-extrabold text-xs sm:text-sm uppercase tracking-widest hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group shadow-lg shadow-cyan-500/25"
-              >
-                {isSubmitting ? (
-                  <span>VERIFYING & SENDING...</span>
-                ) : (
-                  <>
-                    <span>SUBMIT INQUIRY</span>
-                    <Send className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
-                  </>
-                )}
-              </button>
-            </form>
-          )}
+              <div>
+                <label className="block text-[11px] font-mono-code uppercase text-slate-700 dark:text-slate-300 mb-2 font-semibold">
+                  WORK EMAIL ADDRESS *
+                </label>
+                <input
+                  type="email"
+                  required
+                  placeholder="e.g. elena@company.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-white/10 hover:border-[#0284c7] dark:hover:border-cyan-400/50 focus:border-[#0284c7] dark:focus:border-cyan-400 px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl focus:bg-white dark:focus:bg-slate-900"
+                />
+              </div>
+            </div>
+
+            {/* Service Package Tier (SINGLE SELECTION ONLY - Radio Behavior) */}
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center justify-between">
+                <label className="block text-[11px] font-mono-code uppercase text-slate-900 dark:text-white font-extrabold tracking-wider flex items-center gap-2">
+                  <Layers className="w-3.5 h-3.5 text-[#0284c7] dark:text-cyan-400" />
+                  <span>SERVICE PACKAGE TIER</span>
+                </label>
+                <span className="text-[10px] font-mono-code text-slate-500 dark:text-slate-400 uppercase font-medium">
+                  (SELECT 1 PACKAGE)
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {packageTiers.map((tier) => {
+                  const fullText = `${tier.name} (${tier.price} ${tier.details})`;
+                  const isSelected = selectedPackage === fullText;
+
+                  return (
+                    <button
+                      type="button"
+                      key={tier.id}
+                      onClick={() => togglePackage(fullText)}
+                      className={`p-4 rounded-xl text-left transition-all duration-300 cursor-pointer border relative flex flex-col justify-between ${
+                        isSelected
+                          ? 'bg-[#0284c7]/5 dark:bg-cyan-950/50 border-[#0284c7] dark:border-cyan-400 text-slate-900 dark:text-white shadow-md shadow-cyan-500/10 scale-[1.01]'
+                          : 'bg-slate-50 dark:bg-slate-950/60 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:border-cyan-400/60 hover:bg-slate-100/70 dark:hover:bg-slate-900/80'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between w-full mb-1">
+                        <span className="text-xs font-mono-code font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+                          {tier.name}
+                        </span>
+                        {/* Clean Custom Radio Circle */}
+                        <div
+                          className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all shrink-0 ${
+                            isSelected
+                              ? 'border-[#0284c7] dark:border-cyan-400 bg-white dark:bg-cyan-950'
+                              : 'border-slate-300 dark:border-white/20 bg-white dark:bg-white/5'
+                          }`}
+                        >
+                          {isSelected && <div className="w-2 h-2 rounded-full bg-[#0284c7] dark:bg-cyan-400" />}
+                        </div>
+                      </div>
+
+                      <div className="flex items-baseline gap-1.5 mt-1">
+                        <span className="text-base font-display font-extrabold text-[#0284c7] dark:text-cyan-400">
+                          {tier.price}
+                        </span>
+                        <span className="text-[10px] font-mono-code text-slate-500 dark:text-slate-400">
+                          {tier.details}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Technical & Engineering Services (MULTI SELECTION - DEFAULT: NONE PRE-SELECTED) */}
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center justify-between">
+                <label className="block text-[11px] font-mono-code uppercase text-slate-900 dark:text-white font-extrabold tracking-wider flex items-center gap-2">
+                  <Sparkles className="w-3.5 h-3.5 text-[#0284c7] dark:text-cyan-400" />
+                  <span>TECHNICAL & ENGINEERING SERVICES</span>
+                </label>
+                <span className="text-[10px] font-mono-code text-[#0284c7] dark:text-cyan-400 font-bold uppercase">
+                  {selectedServices.length} SELECTED
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {engineeringServices.map((service) => {
+                  const isSelected = selectedServices.includes(service);
+                  return (
+                    <button
+                      type="button"
+                      key={service}
+                      onClick={() => toggleService(service)}
+                      className={`p-3.5 rounded-xl text-xs font-mono-code font-bold text-left transition-all duration-300 flex items-center justify-between cursor-pointer border ${
+                        isSelected
+                          ? 'bg-gradient-to-r from-cyan-600 via-sky-500 to-blue-600 border-cyan-400 text-white shadow-lg shadow-cyan-500/20 scale-[1.01]'
+                          : 'bg-slate-50 dark:bg-slate-950/60 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:border-cyan-400/60 hover:bg-slate-100/70 dark:hover:bg-slate-900/80'
+                      }`}
+                    >
+                      <span className="truncate pr-2">{service}</span>
+                      {/* Custom Checkbox Pill */}
+                      <div
+                        className={`w-4 h-4 rounded-md border flex items-center justify-center transition-all shrink-0 ${
+                          isSelected
+                            ? 'bg-white border-white text-[#0284c7]'
+                            : 'border-slate-300 dark:border-white/20 bg-white dark:bg-white/5'
+                        }`}
+                      >
+                        {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Project Scope & Goals Textarea */}
+            <div className="pt-2">
+              <label className="block text-[11px] font-mono-code uppercase text-slate-700 dark:text-slate-300 mb-2 font-semibold">
+                PROJECT SCOPE & GOALS *
+              </label>
+              <textarea
+                rows={5}
+                required
+                placeholder="Describe your project requirements, target timeline, key deliverables, and budget objectives..."
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-white/10 hover:border-[#0284c7] dark:hover:border-cyan-400/50 focus:border-[#0284c7] dark:focus:border-cyan-400 px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none transition-all text-sm rounded-xl resize-none focus:bg-white dark:focus:bg-slate-900"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 text-white font-display font-extrabold text-xs sm:text-sm uppercase tracking-widest hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group shadow-lg shadow-cyan-500/25"
+            >
+              {isSubmitting ? (
+                <span>VERIFYING & SENDING...</span>
+              ) : (
+                <>
+                  <span>SUBMIT INQUIRY</span>
+                  <Send className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                </>
+              )}
+            </button>
+          </form>
         </div>
 
         {/* Interactive Google Map with High-Tech Frame & Header Toolbar */}
