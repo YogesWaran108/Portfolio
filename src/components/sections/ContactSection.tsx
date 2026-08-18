@@ -135,7 +135,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialService }
   return (
     <section
       id="contact"
-      className="relative bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-white py-12 sm:py-20 px-4 sm:px-12 md:px-16 border-b border-slate-200 dark:border-white/10 transition-colors duration-300 select-none"
+      className="relative bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-white py-12 sm:py-20 px-4 sm:px-12 md:px-16 lg:px-32 xl:px-16 border-b border-slate-200 dark:border-white/10 transition-colors duration-300 select-none"
     >
       {/* ------------------------------------------------------------- */}
       {/* POP-OUT SUCCESS MODAL OVERLAY WITH TOP-RIGHT CLOSE BUTTON     */}

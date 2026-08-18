@@ -69,7 +69,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
     <section
       id="hero"
       ref={heroRef}
-      className="relative w-full min-h-[85vh] sm:min-h-screen flex flex-col justify-between bg-slate-50 dark:bg-[#080d1a] text-slate-900 dark:text-white overflow-hidden pt-16 sm:pt-20 pb-8 sm:pb-12 px-6 sm:px-12 md:px-16 border-b border-slate-200 dark:border-white/10 select-none transition-colors duration-300"
+      className="relative w-full min-h-[85vh] sm:min-h-screen flex flex-col justify-between bg-slate-50 dark:bg-[#080d1a] text-slate-900 dark:text-white overflow-hidden pt-16 sm:pt-20 pb-8 sm:pb-12 px-6 sm:px-12 md:px-16 lg:px-32 xl:px-16 border-b border-slate-200 dark:border-white/10 select-none transition-colors duration-300"
     >
       {/* 3D Wireframe Canvas */}
       <ThreeBackground />
@@ -84,7 +84,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           {/* Minimal Headline */}
           <h1
             ref={headlineRef}
-            className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.08] text-slate-900 dark:text-white mb-3 sm:mb-4 max-w-3xl font-bold"
+            className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl tracking-tight leading-[1.08] text-slate-900 dark:text-white mb-3 sm:mb-4 max-w-3xl font-bold"
           >
             I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-sky-400 to-blue-600 dark:from-cyan-400 dark:via-sky-400 dark:to-blue-500">Yogeshwaran.</span>
           </h1>

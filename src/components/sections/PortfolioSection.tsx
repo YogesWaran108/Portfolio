@@ -73,7 +73,7 @@ export const PortfolioSection: React.FC = () => {
     <section
       id="portfolio"
       ref={sectionRef}
-      className="relative bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-white py-20 sm:py-28 px-8 sm:px-16 md:px-20 lg:px-28 xl:px-36 border-b border-slate-200 dark:border-white/10 overflow-hidden"
+      className="relative bg-slate-50 dark:bg-[#060a14] text-slate-900 dark:text-white py-20 sm:py-28 px-8 sm:px-16 md:px-20 lg:px-32 xl:px-36 border-b border-slate-200 dark:border-white/10 overflow-hidden"
     >
       {/* Background Watermark Polygon Geometry */}
       <div className="absolute right-0 top-10 w-[500px] h-[500px] opacity-10 dark:opacity-15 pointer-events-none">

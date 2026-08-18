@@ -21,8 +21,7 @@ const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
   { id: 'portfolio', label: 'Portfolio' },
   { id: 'services', label: 'Services' },
-  { id: 'contact', label: 'Contact' },
-  { id: 'admin', label: 'Admin' }
+  { id: 'contact', label: 'Contact' }
 ];
 
 export const NavigationOverlay: React.FC<NavigationOverlayProps> = ({

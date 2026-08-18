@@ -288,7 +288,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onNavigateCont
 
           <div className="lg:col-span-8 space-y-6 sm:space-y-8 relative z-10">
             {/* Heading formatted into 2 clean rows on mobile screens */}
-            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-6xl xl:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
               <span className="block md:inline">
                 Website{' '}
                 <span className="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400">

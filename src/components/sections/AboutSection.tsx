@@ -32,7 +32,7 @@ export const AboutSection: React.FC = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="relative bg-slate-50 dark:bg-[#0b1329] text-slate-900 dark:text-white py-16 sm:py-24 px-6 sm:px-12 md:px-16 overflow-hidden border-b border-slate-200 dark:border-white/10"
+      className="relative bg-slate-50 dark:bg-[#0b1329] text-slate-900 dark:text-white py-16 sm:py-24 px-6 sm:px-12 md:px-16 lg:px-32 xl:px-16 overflow-hidden border-b border-slate-200 dark:border-white/10"
     >
       <div className="max-w-6xl mx-auto">
         {/* Section Header Eyebrow */}

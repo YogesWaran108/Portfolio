@@ -21,8 +21,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onScrollTop, activeR
     { id: 'home', label: 'Home' },
     { id: 'portfolio', label: 'Portfolio' },
     { id: 'services', label: 'Services' },
-    { id: 'contact', label: 'Contact' },
-    { id: 'admin', label: 'Admin HUD' }
+    { id: 'contact', label: 'Contact' }
   ];
 
   useEffect(() => {
@@ -79,7 +78,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onScrollTop, activeR
   };
 
   return (
-    <footer ref={footerRef} className="relative bg-black dark:bg-black text-white pt-24 pb-12 px-8 sm:px-16 md:px-20 lg:px-28 xl:px-36 overflow-hidden font-sans border-t border-white/10">
+    <footer ref={footerRef} className="relative bg-black dark:bg-black text-white pt-24 pb-12 px-8 sm:px-16 md:px-20 lg:px-32 xl:px-36 overflow-hidden font-sans border-t border-white/10">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Upper Main Footer Grid */}
         <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">

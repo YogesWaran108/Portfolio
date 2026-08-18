@@ -272,7 +272,9 @@ export function App() {
 
     if (lenisInstance) {
       lenisInstance.start();
+      lenisInstance.scrollTo(0, { immediate: true });
     }
+    window.scrollTo({ top: 0, behavior: 'instant' });
     document.body.style.overflow = 'auto';
 
     const normalized = pageOrSection.toLowerCase();
