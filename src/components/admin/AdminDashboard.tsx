@@ -19,7 +19,10 @@ import {
   ArrowLeft,
   X,
   Send,
-  Sparkles
+  Sparkles,
+  Lock,
+  Unlock,
+  AlertTriangle
 } from 'lucide-react';
 
 export interface InquiryItem {
@@ -49,6 +52,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onBackToSite, on
 
   // In-App Direct Reply Drawer / Modal State
   const [replyingInquiry, setReplyingInquiry] = useState<InquiryItem | null>(null);
+  const [replyEmail, setReplyEmail] = useState<string>('');
+  const [isEditingEmail, setIsEditingEmail] = useState<boolean>(false);
   const [replySubject, setReplySubject] = useState<string>('');
   const [replyBody, setReplyBody] = useState<string>('');
   const [isSendingReply, setIsSendingReply] = useState<boolean>(false);
@@ -76,6 +81,18 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onBackToSite, on
   useEffect(() => {
     fetchInquiries();
   }, []);
+
+  // Lock body scrolling when modal is open
+  useEffect(() => {
+    if (replyingInquiry) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [replyingInquiry]);
 
   const handleStatusChange = async (id: string, newStatus: string) => {
     const API_BASE = getApiBaseUrl();
@@ -122,6 +139,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onBackToSite, on
   // Open Direct In-App Reply Modal
   const handleOpenReplyModal = (inquiry: InquiryItem) => {
     setReplyingInquiry(inquiry);
+    setReplyEmail(inquiry.email);
+    setIsEditingEmail(false);
     setReplySuccessMessage(null);
     setReplySubject(`Re: Inquiry [${inquiry.id}] - Project Proposal & Consultation`);
 
@@ -221,7 +240,7 @@ Yogeshwaran Ravishankar`
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           inquiryId: replyingInquiry.id,
-          clientEmail: replyingInquiry.email,
+          clientEmail: replyEmail || replyingInquiry.email,
           clientName: replyingInquiry.name,
           subject: replySubject,
           replyMessage: replyBody
@@ -581,8 +600,11 @@ Yogeshwaran Ravishankar`
       {/* DIRECT IN-APP EMAIL REPLY MODAL COMPOSER                      */}
       {/* ------------------------------------------------------------- */}
       {replyingInquiry && (
-        <div className="fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn">
-          <div className="bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-white/15 rounded-3xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl relative overflow-hidden">
+        <div
+          className="fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn"
+          onWheel={(e) => e.stopPropagation()}
+        >
+          <div className="bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-white/15 rounded-3xl w-full max-w-2xl shadow-2xl p-6 sm:p-8 space-y-5 relative overflow-hidden">
             {/* Modal Close Button */}
             <button
               onClick={() => setReplyingInquiry(null)}
@@ -591,63 +613,96 @@ Yogeshwaran Ravishankar`
               <X className="w-4 h-4" />
             </button>
 
-            {/* Modal Header */}
-            <div className="p-6 sm:p-8 pb-4 space-y-4 border-b border-slate-100 dark:border-white/5">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                  <span className="text-xs font-mono-code uppercase tracking-widest text-[#0284c7] dark:text-cyan-400 font-bold">
-                    // IN-APP DIRECT EMAIL COMPOSER
-                  </span>
-                </div>
-                <h2 className="font-display text-2xl font-extrabold text-slate-900 dark:text-white">
-                  Reply to {replyingInquiry.name}
-                </h2>
-              </div>
-
-              {/* Preset Quick Template Buttons */}
-              <div className="space-y-2">
-                <span className="text-[10px] font-mono-code uppercase text-slate-400 font-bold flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-[#0284c7]" /> QUICK RESPONSE TEMPLATES:
+            {/* Modal Title & Header */}
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="text-xs font-mono-code uppercase tracking-widest text-[#0284c7] dark:text-cyan-400 font-bold">
+                  // IN-APP DIRECT EMAIL COMPOSER
                 </span>
-                <div className="flex flex-wrap items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => applyPresetTemplate('proposal')}
-                    className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
-                  >
-                    🚀 Proposal & Timeline
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => applyPresetTemplate('call')}
-                    className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
-                  >
-                    🗓️ Schedule Intro Call
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => applyPresetTemplate('pricing')}
-                    className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
-                  >
-                    💰 Hosting & Package Scope
-                  </button>
-                </div>
+              </div>
+              <h2 className="font-display text-2xl font-extrabold text-slate-900 dark:text-white">
+                Reply to {replyingInquiry.name}
+              </h2>
+            </div>
+
+            {/* Preset Quick Template Buttons */}
+            <div className="space-y-2">
+              <span className="text-[10px] font-mono-code uppercase text-slate-400 font-bold flex items-center gap-1">
+                <Sparkles className="w-3 h-3 text-[#0284c7]" /> QUICK RESPONSE TEMPLATES:
+              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => applyPresetTemplate('proposal')}
+                  className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
+                >
+                  🚀 Proposal & Timeline
+                </button>
+                <button
+                  type="button"
+                  onClick={() => applyPresetTemplate('call')}
+                  className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
+                >
+                  🗓️ Schedule Intro Call
+                </button>
+                <button
+                  type="button"
+                  onClick={() => applyPresetTemplate('pricing')}
+                  className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
+                >
+                  💰 Hosting & Package Scope
+                </button>
               </div>
             </div>
 
-            {/* Modal Body - Scrollable Container */}
-            <div className="p-6 sm:p-8 space-y-4 overflow-y-auto flex-1 modal-scrollbar">
+            {/* Form Controls - Non-scrolling Fixed Container */}
+            <div className="space-y-4">
               <div>
-                <label className="block text-[11px] font-mono-code uppercase text-slate-500 dark:text-slate-400 font-bold mb-1">
-                  RECIPIENT EMAIL
-                </label>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="block text-[11px] font-mono-code uppercase text-slate-500 dark:text-slate-400 font-bold">
+                    RECIPIENT EMAIL *
+                  </label>
+                  {!isEditingEmail ? (
+                    <button
+                      type="button"
+                      onClick={() => setIsEditingEmail(true)}
+                      className="text-[10px] font-mono-code text-[#0284c7] dark:text-cyan-400 hover:underline font-bold flex items-center gap-1 cursor-pointer"
+                    >
+                      <Lock className="w-3 h-3 text-[#0284c7] dark:text-cyan-400" /> UNLOCK & EDIT EMAIL
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsEditingEmail(false);
+                        if (replyingInquiry) setReplyEmail(replyingInquiry.email);
+                      }}
+                      className="text-[10px] font-mono-code text-slate-500 hover:text-slate-400 font-bold flex items-center gap-1 cursor-pointer"
+                    >
+                      <Unlock className="w-3 h-3 text-amber-500" /> RESET & LOCK
+                    </button>
+                  )}
+                </div>
+
                 <input
                   type="email"
-                  disabled
-                  value={replyingInquiry.email}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-700 dark:text-slate-300"
+                  disabled={!isEditingEmail}
+                  value={replyEmail}
+                  onChange={(e) => setReplyEmail(e.target.value)}
+                  className={`w-full px-4 py-2.5 rounded-xl border text-xs font-mono-code font-bold transition-all ${
+                    !isEditingEmail
+                      ? 'bg-slate-100 dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 cursor-not-allowed opacity-80'
+                      : 'bg-amber-500/10 border-amber-500/50 text-slate-900 dark:text-white focus:outline-none focus:border-amber-500'
+                  }`}
                 />
+
+                {isEditingEmail && (
+                  <div className="mt-2 text-[11px] font-mono-code text-amber-700 dark:text-amber-300 flex items-start gap-2 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/30 animate-fadeIn">
+                    <AlertTriangle className="w-4 h-4 shrink-0 text-amber-500 mt-0.5" />
+                    <span><strong>⚠️ Caution:</strong> Email editing is unlocked. Direct response will be dispatched to <strong>{replyEmail || 'this custom address'}</strong> instead of default ({replyingInquiry.email}).</span>
+                  </div>
+                )}
               </div>
 
               <div>
@@ -666,11 +721,41 @@ Yogeshwaran Ravishankar`
                 <label className="block text-[11px] font-mono-code uppercase text-slate-500 dark:text-slate-400 font-bold mb-1">
                   REPLY MESSAGE *
                 </label>
+                <style>{`
+                  .admin-reply-textarea {
+                    scrollbar-width: thin !important;
+                    scrollbar-color: #06b6d4 #060a14 !important;
+                  }
+                  .admin-reply-textarea::-webkit-scrollbar {
+                    display: block !important;
+                    width: 10px !important;
+                    height: 10px !important;
+                    background-color: #060a14 !important;
+                  }
+                  .admin-reply-textarea::-webkit-scrollbar-track {
+                    background-color: #060a14 !important;
+                    border-radius: 0 8px 8px 0 !important;
+                  }
+                  .admin-reply-textarea::-webkit-scrollbar-thumb {
+                    background: linear-gradient(180deg, #06b6d4 0%, #0284c7 100%) !important;
+                    border-radius: 9999px !important;
+                    border: 2px solid #060a14 !important;
+                    min-height: 48px !important;
+                  }
+                  .admin-reply-textarea::-webkit-scrollbar-thumb:hover {
+                    background: #38bdf8 !important;
+                  }
+                `}</style>
                 <textarea
-                  rows={8}
+                  rows={6}
                   value={replyBody}
                   onChange={(e) => setReplyBody(e.target.value)}
-                  className="w-full h-56 min-h-[160px] max-h-[300px] overflow-y-auto reply-textarea-scrollbar px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono-code text-slate-900 dark:text-white focus:outline-none focus:border-[#0284c7] leading-relaxed resize-y overscroll-contain"
+                  onWheel={(e) => e.stopPropagation()}
+                  style={{
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: '#06b6d4 #060a14'
+                  }}
+                  className="w-full h-52 min-h-[160px] max-h-[280px] overflow-y-scroll admin-reply-textarea px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono-code text-slate-900 dark:text-white focus:outline-none focus:border-[#0284c7] leading-relaxed resize-y overscroll-contain"
                 />
               </div>
 
@@ -683,8 +768,8 @@ Yogeshwaran Ravishankar`
               )}
             </div>
 
-            {/* Modal Footer */}
-            <div className="p-6 sm:p-8 pt-4 flex items-center justify-end gap-3 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02]">
+            {/* Modal Action Buttons */}
+            <div className="flex items-center justify-end gap-3 pt-2">
               <button
                 type="button"
                 onClick={() => setReplyingInquiry(null)}
