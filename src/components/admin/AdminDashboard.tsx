@@ -581,61 +581,63 @@ Yogeshwaran Ravishankar`
       {/* DIRECT IN-APP EMAIL REPLY MODAL COMPOSER                      */}
       {/* ------------------------------------------------------------- */}
       {replyingInquiry && (
-        <div className="fixed inset-0 z-[200] bg-slate-950/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn">
-          <div className="bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-white/15 rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto space-y-6 p-6 sm:p-8 relative shadow-2xl">
+        <div className="fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn">
+          <div className="bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-white/15 rounded-3xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl relative overflow-hidden">
             {/* Modal Close Button */}
             <button
               onClick={() => setReplyingInquiry(null)}
-              className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-700 dark:text-slate-300 transition-all cursor-pointer"
+              className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-700 dark:text-slate-300 transition-all cursor-pointer z-10"
             >
               <X className="w-4 h-4" />
             </button>
 
-            {/* Modal Title */}
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                <span className="text-xs font-mono-code uppercase tracking-widest text-[#0284c7] dark:text-cyan-400 font-bold">
-                  // IN-APP DIRECT EMAIL COMPOSER
+            {/* Modal Header */}
+            <div className="p-6 sm:p-8 pb-4 space-y-4 border-b border-slate-100 dark:border-white/5">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                  <span className="text-xs font-mono-code uppercase tracking-widest text-[#0284c7] dark:text-cyan-400 font-bold">
+                    // IN-APP DIRECT EMAIL COMPOSER
+                  </span>
+                </div>
+                <h2 className="font-display text-2xl font-extrabold text-slate-900 dark:text-white">
+                  Reply to {replyingInquiry.name}
+                </h2>
+              </div>
+
+              {/* Preset Quick Template Buttons */}
+              <div className="space-y-2">
+                <span className="text-[10px] font-mono-code uppercase text-slate-400 font-bold flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-[#0284c7]" /> QUICK RESPONSE TEMPLATES:
                 </span>
-              </div>
-              <h2 className="font-display text-2xl font-extrabold text-slate-900 dark:text-white">
-                Reply to {replyingInquiry.name}
-              </h2>
-            </div>
-
-            {/* Preset Quick Template Buttons */}
-            <div className="space-y-2">
-              <span className="text-[10px] font-mono-code uppercase text-slate-400 font-bold flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-[#0284c7]" /> QUICK RESPONSE TEMPLATES:
-              </span>
-              <div className="flex flex-wrap items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => applyPresetTemplate('proposal')}
-                  className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
-                >
-                  🚀 Proposal & Timeline
-                </button>
-                <button
-                  type="button"
-                  onClick={() => applyPresetTemplate('call')}
-                  className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
-                >
-                  🗓️ Schedule Intro Call
-                </button>
-                <button
-                  type="button"
-                  onClick={() => applyPresetTemplate('pricing')}
-                  className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
-                >
-                  💰 Hosting & Package Scope
-                </button>
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => applyPresetTemplate('proposal')}
+                    className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
+                  >
+                    🚀 Proposal & Timeline
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => applyPresetTemplate('call')}
+                    className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
+                  >
+                    🗓️ Schedule Intro Call
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => applyPresetTemplate('pricing')}
+                    className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-cyan-50 dark:hover:bg-cyan-950/60 border border-slate-200 dark:border-white/10 text-xs font-mono-code font-bold text-slate-800 dark:text-slate-200 hover:text-[#0284c7] transition-all cursor-pointer"
+                  >
+                    💰 Hosting & Package Scope
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Email Form Controls */}
-            <div className="space-y-4">
+            {/* Modal Body - Scrollable Container */}
+            <div className="p-6 sm:p-8 space-y-4 overflow-y-auto flex-1 modal-scrollbar">
               <div>
                 <label className="block text-[11px] font-mono-code uppercase text-slate-500 dark:text-slate-400 font-bold mb-1">
                   RECIPIENT EMAIL
@@ -665,23 +667,24 @@ Yogeshwaran Ravishankar`
                   REPLY MESSAGE *
                 </label>
                 <textarea
+                  rows={8}
                   value={replyBody}
                   onChange={(e) => setReplyBody(e.target.value)}
-                  className="w-full h-44 min-h-[140px] max-h-[260px] overflow-y-scroll reply-textarea-scrollbar px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono-code text-slate-900 dark:text-white focus:outline-none focus:border-[#0284c7] leading-relaxed resize-y"
+                  className="w-full h-56 min-h-[160px] max-h-[300px] overflow-y-auto reply-textarea-scrollbar px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono-code text-slate-900 dark:text-white focus:outline-none focus:border-[#0284c7] leading-relaxed resize-y overscroll-contain"
                 />
               </div>
+
+              {/* Success Alert */}
+              {replySuccessMessage && (
+                <div className="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs font-mono-code flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span>{replySuccessMessage}</span>
+                </div>
+              )}
             </div>
 
-            {/* Success Alert */}
-            {replySuccessMessage && (
-              <div className="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs font-mono-code flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>{replySuccessMessage}</span>
-              </div>
-            )}
-
-            {/* Submit Action Buttons */}
-            <div className="flex items-center justify-end gap-3 pt-2">
+            {/* Modal Footer */}
+            <div className="p-6 sm:p-8 pt-4 flex items-center justify-end gap-3 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02]">
               <button
                 type="button"
                 onClick={() => setReplyingInquiry(null)}
