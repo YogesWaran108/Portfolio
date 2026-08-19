@@ -667,7 +667,7 @@ Yogeshwaran Ravishankar`
                 <textarea
                   value={replyBody}
                   onChange={(e) => setReplyBody(e.target.value)}
-                  className="w-full h-48 min-h-[140px] max-h-[260px] overflow-y-auto px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono-code text-slate-900 dark:text-white focus:outline-none focus:border-[#0284c7] leading-relaxed resize-y"
+                  className="w-full h-44 min-h-[140px] max-h-[260px] overflow-y-scroll reply-textarea-scrollbar px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono-code text-slate-900 dark:text-white focus:outline-none focus:border-[#0284c7] leading-relaxed resize-y"
                 />
               </div>
             </div>
