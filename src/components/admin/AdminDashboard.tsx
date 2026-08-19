@@ -582,7 +582,7 @@ Yogeshwaran Ravishankar`
       {/* ------------------------------------------------------------- */}
       {replyingInquiry && (
         <div className="fixed inset-0 z-[200] bg-slate-950/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-fadeIn">
-          <div className="bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-white/15 rounded-3xl w-full max-w-2xl shadow-2xl overflow-hidden space-y-6 p-6 sm:p-8 relative">
+          <div className="bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-white/15 rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto space-y-6 p-6 sm:p-8 relative shadow-2xl">
             {/* Modal Close Button */}
             <button
               onClick={() => setReplyingInquiry(null)}
@@ -665,10 +665,9 @@ Yogeshwaran Ravishankar`
                   REPLY MESSAGE *
                 </label>
                 <textarea
-                  rows={8}
                   value={replyBody}
                   onChange={(e) => setReplyBody(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono-code text-slate-900 dark:text-white focus:outline-none focus:border-[#0284c7] leading-relaxed resize-none"
+                  className="w-full h-48 min-h-[140px] max-h-[260px] overflow-y-auto px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono-code text-slate-900 dark:text-white focus:outline-none focus:border-[#0284c7] leading-relaxed resize-y"
                 />
               </div>
             </div>
